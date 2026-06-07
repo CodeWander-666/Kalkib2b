@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>KalkiB2B – 200+ Tech & AI Services | Transparent Pricing</title>
+  <meta name="description" content="Complete catalog of 200+ services: AI, digital marketing, web development, data, cloud, cybersecurity, AR/VR, IoT, and more. Competitive pricing with 2% success fee.">
+  <meta name="keywords" content="200+ services, tech service catalog, AI services pricing, digital marketing rates, web development cost, cloud consulting fees">
+  <meta name="author" content="Kalki Technologies">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://kalkicore.vercel.app/b2b/services.html">
+  <meta property="og:title" content="KalkiB2B – 200+ Tech & AI Services Catalog">
+  <meta property="og:description" content="Find every digital service you need – from AI to cybersecurity – with transparent pricing. Join the collective.">
+  <meta property="og:image" content="https://kalkicore.vercel.app/og-b2b.jpg">
+  <meta property="og:url" content="https://kalkicore.vercel.app/b2b/services.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Full Service Catalog of KalkiB2B",
+      "numberOfItems": 212,
+      "itemListElement": [
+        {"@type": "Service", "name": "Custom LLM Fine‑tuning", "description": "Fine‑tune GPT, Llama on your data"},
+        {"@type": "Service", "name": "SEO Monthly Package", "description": "Complete on‑page & off‑page SEO"}
+      ]
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Inter',sans-serif; background:#0A0A0F; color:#F0F3FA; overflow-x:hidden; }
+    h1,h2,h3,.font-serif { font-family:'Playfair Display',serif; }
+    .glass-card { background:rgba(20,20,35,0.55); backdrop-filter:blur(16px); border:1px solid rgba(212,175,55,0.25); border-radius:2rem; transition:transform 0.35s ease,border-color 0.3s; }
+    .glass-card:hover { border-color:rgba(212,175,55,0.7); transform:translateY(-5px); }
+    .gradient-gold { background:linear-gradient(135deg,#E9B44C,#C79A2E,#E9B44C); background-size:200% auto; -webkit-background-clip:text; background-clip:text; color:transparent; animation:shimmer 3.5s linear infinite; }
+    @keyframes shimmer { 0%{background-position:0% 50%;} 100%{background-position:200% 50%;} }
+    .btn-glow { position:relative; z-index:1; transition:all 0.3s ease; }
+    .btn-glow::before { content:''; position:absolute; top:-2px; left:-2px; right:-2px; bottom:-2px; background:linear-gradient(45deg,#E9B44C,#C79A2E,#E9B44C); background-size:300% 300%; border-radius:9999px; z-index:-1; opacity:0; transition:opacity 0.4s; }
+    .btn-glow:hover::before { opacity:1; }
+    .scroll-reveal { opacity:0; transform:translateY(35px); transition:opacity 0.8s cubic-bezier(0.2,0.9,0.4,1.1),transform 0.8s ease; }
+    .scroll-reveal.visible { opacity:1; transform:translateY(0); }
+    #particle-canvas { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
+    .service-category { margin-bottom: 3.5rem; }
+    .service-category h3 { font-size: 2rem; margin-bottom: 1.5rem; border-left: 5px solid #E9B44C; padding-left: 1rem; }
+    .service-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; }
+    .service-card { background: rgba(255,255,255,0.04); border-radius: 1.2rem; padding: 1rem 1.2rem; transition: all 0.2s ease; border: 1px solid rgba(255,255,255,0.05); }
+    .service-card:hover { background: rgba(255,255,255,0.08); transform: translateX(6px); border-color: rgba(212,175,55,0.3); }
+    .service-name { font-weight: 700; color: #E9B44C; font-size: 1rem; }
+    .service-desc { font-size: 0.75rem; color: #aaa; margin-top: 0.25rem; line-height: 1.3; }
+    .service-price { font-size: 0.8rem; margin-top: 0.5rem; font-family: monospace; color: #d1d5db; }
+    .request-quote { font-size: 0.7rem; margin-top: 0.5rem; display: inline-block; color: #E9B44C; text-decoration: underline; cursor: pointer; }
+    footer a:hover { color:#E9B44C; }
+    .floating-cta { position: fixed; bottom: 2rem; right: 2rem; z-index: 100; background: linear-gradient(135deg,#E9B44C,#C79A2E); padding: 0.75rem 1.5rem; border-radius: 9999px; color: #0A0A0F; font-weight: bold; box-shadow: 0 8px 20px rgba(0,0,0,0.3); transition: transform 0.2s; }
+    .floating-cta:hover { transform: scale(1.05); }
+  </style>
+</head>
+<body>
+<canvas id="particle-canvas"></canvas>
+
+<nav class="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-xl border-b border-white/10 py-4 px-6 md:px-12">
+  <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <div class="text-2xl font-bold tracking-tight"><span class="gradient-gold">KALKI</span><span class="text-white font-light">B2B</span></div>
+    <div class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
+      <a href="index.html" class="hover:text-amber-400 transition">Home</a>
+      <a href="services.html" class="hover:text-amber-400 transition border-b-2 border-amber-500 pb-1">Services</a>
+      <a href="how-it-works.html" class="hover:text-amber-400 transition">How it Works</a>
+      <a href="pricing.html" class="hover:text-amber-400 transition">Pricing</a>
+      <a href="join.html" class="hover:text-amber-400 transition">Join</a>
+    </div>
+    <a href="join.html" class="bg-gradient-to-r from-amber-600 to-yellow-600 px-5 py-2 rounded-full text-sm font-semibold shadow-lg hover:scale-105 transition">Become Partner →</a>
+  </div>
+</nav>
+
+<main class="relative pt-28 pb-20">
+  <!-- Hero -->
+  <section class="max-w-7xl mx-auto px-6 text-center mb-16 scroll-reveal">
+    <span class="inline-block px-4 py-1 rounded-full text-xs font-bold border border-amber-500/30 bg-amber-500/10 text-amber-400 mb-4">✦ 200+ SERVICES – ONE PLATFORM ✦</span>
+    <h1 class="text-5xl md:text-7xl font-serif font-bold leading-[1.1]">Complete Tech & AI <span class="gradient-gold">Service Catalog</span></h1>
+    <p class="text-gray-300 text-lg max-w-3xl mx-auto mt-4">From AI model fine‑tuning to cybersecurity audits. All services backed by our pool of verified partners. <strong class="text-amber-400">Pay only 2% success fee</strong> after closing.</p>
+    <div class="flex justify-center gap-3 mt-6 text-sm text-gray-400">
+      <span class="glass-card px-3 py-1 rounded-full">✓ 212+ services</span>
+      <span class="glass-card px-3 py-1 rounded-full">✓ 11 categories</span>
+      <span class="glass-card px-3 py-1 rounded-full">✓ Transparent pricing</span>
+    </div>
+  </section>
+
+  <!-- Category Navigation (anchor links) -->
+  <div class="max-w-7xl mx-auto px-6 mb-10 flex flex-wrap gap-3 justify-center sticky top-20 z-20 bg-black/40 backdrop-blur py-3 rounded-full">
+    <a href="#ai-ml" class="text-xs text-gray-300 hover:text-amber-400">AI/ML</a>
+    <a href="#digital-marketing" class="text-xs text-gray-300 hover:text-amber-400">Digital Marketing</a>
+    <a href="#web-dev" class="text-xs text-gray-300 hover:text-amber-400">Web & App</a>
+    <a href="#data" class="text-xs text-gray-300 hover:text-amber-400">Data & Analytics</a>
+    <a href="#cloud-devops" class="text-xs text-gray-300 hover:text-amber-400">Cloud & DevOps</a>
+    <a href="#cybersecurity" class="text-xs text-gray-300 hover:text-amber-400">Cybersecurity</a>
+    <a href="#arvr" class="text-xs text-gray-300 hover:text-amber-400">AR/VR</a>
+    <a href="#growth" class="text-xs text-gray-300 hover:text-amber-400">Growth Consulting</a>
+    <a href="#blockchain" class="text-xs text-gray-300 hover:text-amber-400">Blockchain</a>
+    <a href="#iot" class="text-xs text-gray-300 hover:text-amber-400">IoT/Hardware</a>
+    <a href="#design" class="text-xs text-gray-300 hover:text-amber-400">Design & Creative</a>
+  </div>
+
+  <div id="services-root" class="max-w-7xl mx-auto px-6"></div>
+
+  <!-- Additional Explanation -->
+  <div class="max-w-7xl mx-auto px-6 mt-20">
+    <div class="glass-card p-8 scroll-reveal text-center">
+      <i class="fas fa-charging-station text-4xl text-amber-500 mb-3"></i>
+      <h2 class="text-2xl font-serif">How pricing works</h2>
+      <p class="text-gray-300 max-w-2xl mx-auto mt-2">All prices listed are market estimates from our partners. Final cost depends on project scope. When you request a service through KalkiB2B, we connect you with the best‑matched agency – and you pay <strong class="text-amber-400">only 2% success fee</strong> after you close the deal. No upfront charges, no hidden costs.</p>
+      <a href="join.html" class="inline-block mt-4 text-amber-400 hover:underline">Post a requirement →</a>
+    </div>
+  </div>
+
+  <!-- Floating CTA -->
+  <a href="join.html" class="floating-cta"><i class="fas fa-handshake mr-2"></i> Join Collective</a>
+</main>
+
+<footer class="border-t border-white/10 py-10 mt-16 text-center text-gray-500 text-sm">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-wrap justify-center gap-6 mb-5">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="how-it-works.html">How it Works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="join.html">Join</a>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </div>
+    <p>© 2026 KalkiB2B – A Kalki Technologies Initiative (MSME Registered, Startup India)</p>
+    <p class="text-xs mt-2">2% success fee, barter enabled, fair lead distribution. 200+ services from India's top digital agencies.</p>
+  </div>
+</footer>
+
+<script>
+  // Full service catalog: 11 categories, total > 210 services
+  const catalog = [
+    { id: "ai-ml", name: "Artificial Intelligence & Machine Learning", icon: "fas fa-robot", services: [
+      { name: "Custom LLM Fine‑tuning (GPT, Llama 3, Gemini)", desc: "Fine‑tune open‑source LLMs on your proprietary data", price: "₹50,000 – ₹3,00,000" },
+      { name: "Chatbot Development (WhatsApp, Web, Telegram)", desc: "AI agents for customer support, lead generation", price: "₹25,000 – ₹1,50,000" },
+      { name: "Computer Vision (Object Detection, Segmentation)", desc: "YOLO, Detectron2, custom models", price: "₹40,000 – ₹4,00,000" },
+      { name: "Predictive Analytics & Forecasting", desc: "Time series, demand forecasting, churn prediction", price: "₹30,000 – ₹2,50,000" },
+      { name: "AI Agent Development (AutoGPT, CrewAI)", desc: "Autonomous agents for research, sales, operations", price: "₹60,000 – ₹5,00,000" },
+      { name: "Speech‑to‑Text & Text‑to‑Speech", desc: "Whisper, ElevenLabs integration", price: "₹20,000 – ₹1,20,000" },
+      { name: "Recommendation Engine", desc: "Personalised product, content recommendations", price: "₹35,000 – ₹2,00,000" },
+      { name: "AI Content Moderation", desc: "Image/text moderation for platforms", price: "₹25,000 – ₹1,80,000" },
+      { name: "Document Intelligence (OCR + NLP)", desc: "Invoice extraction, contract analysis", price: "₹30,000 – ₹2,00,000" },
+      { name: "LLM Integration (OpenAI, Anthropic, Groq)", desc: "API integration, prompt engineering", price: "₹15,000 – ₹1,00,000" },
+      { name: "MLOps & Model Deployment", desc: "Kubeflow, SageMaker, ONNX, TensorRT", price: "₹50,000 – ₹4,00,000" },
+      { name: "Explainable AI (XAI) Audits", desc: "SHAP, LIME, fairness analysis", price: "₹30,000 – ₹1,50,000" },
+      { name: "AI Data Labeling Services", desc: "Image/text/audio labeling (managed)", price: "₹10,000 – ₹60,000 per 1k samples" },
+      { name: "Generative AI for Images (Stable Diffusion, Midjourney)", desc: "API integration, fine‑tuning", price: "₹40,000 – ₹2,50,000" },
+      { name: "Federated Learning Solutions", desc: "Privacy‑preserving ML on edge", price: "₹80,000 – ₹5,00,000" },
+      { name: "Time Series Forecasting (LSTM, Prophet)", desc: "Sales, stock, weather prediction", price: "₹40,000 – ₹2,00,000" },
+      { name: "AI Model Quantization & Optimisation", desc: "Run LLMs on edge devices", price: "₹30,000 – ₹1,50,000" },
+      { name: "Natural Language Processing (NER, Sentiment)", desc: "Entity extraction, sentiment analysis", price: "₹25,000 – ₹1,20,000" }
+    ] },
+    { id: "digital-marketing", name: "Digital Marketing & Growth", icon: "fas fa-chart-line", services: [
+      { name: "SEO (On‑page + Off‑page) – Monthly", desc: "Keyword research, technical SEO, backlinks", price: "₹15,000 – ₹90,000 /month" },
+      { name: "Local SEO (Google Maps, GMB)", desc: "Local pack dominance, review management", price: "₹10,000 – ₹45,000 /month" },
+      { name: "PPC Management (Google Ads, Bing)", desc: "Ad creation, A/B testing, optimisation", price: "10% of ad spend + ₹5k min" },
+      { name: "Social Media Management (4 platforms)", desc: "Content calendar, engagement, analytics", price: "₹25,000 – ₹1,20,000 /month" },
+      { name: "Content Marketing (Blogs, Articles)", desc: "SEO‑optimised long‑form content", price: "₹5,000 – ₹25,000 per piece" },
+      { name: "Email Marketing Automation", desc: "Klaviyo, Mailchimp, drip campaigns", price: "₹15,000 – ₹60,000 /month" },
+      { name: "Influencer Marketing Campaigns", desc: "Identify, negotiate, manage influencers", price: "₹30,000 – ₹3,50,000 per campaign" },
+      { name: "ORM (Online Reputation Management)", desc: "Review tracking, response, suppression", price: "₹20,000 – ₹1,00,000 /month" },
+      { name: "YouTube SEO & Channel Growth", desc: "Metadata, thumbnails, audience retention", price: "₹20,000 – ₹75,000 /month" },
+      { name: "LinkedIn Lead Generation", desc: "Automated outreach, content strategy", price: "₹25,000 – ₹1,20,000 /month" },
+      { name: "Programmatic SEO (Landing Pages at Scale)", desc: "AI‑generated hyperlocal pages", price: "₹50,000 – ₹3,00,000" },
+      { name: "Conversion Rate Optimisation (CRO)", desc: "A/B testing, heatmaps, funnel analysis", price: "₹30,000 – ₹1,80,000" },
+      { name: "E‑commerce SEO (Amazon, Flipkart)", desc: "Product listing optimisation, A+ content", price: "₹20,000 – ₹80,000 /month" },
+      { name: "Google Analytics 4 Setup & Audit", desc: "Tracking, goals, e‑commerce events", price: "₹10,000 – ₹35,000" },
+      { name: "WhatsApp Marketing Automation", desc: "Broadcasts, sequences, analytics", price: "₹15,000 – ₹70,000 /month" },
+      { name: "Influencer Outreach Management", desc: "End‑to‑end campaign execution", price: "₹20,000 – ₹1,00,000 /month" },
+      { name: "Reddit & Quora Marketing", desc: "Community building, lead generation", price: "₹15,000 – ₹60,000 /month" },
+      { name: "Affiliate Program Setup", desc: "Recruit, track, pay affiliates", price: "₹25,000 – ₹1,20,000" },
+      { name: "HubSpot Marketing Automation", desc: "Setup, workflows, reporting", price: "₹40,000 – ₹2,00,000" }
+    ] },
+    { id: "web-dev", name: "Web & Mobile App Development", icon: "fas fa-code", services: [
+      { name: "Static Website (5-10 pages)", desc: "HTML/CSS/JS, fully responsive", price: "₹7,999 – ₹30,000" },
+      { name: "Dynamic Next.js / React Website", desc: "SEO‑friendly, high performance", price: "₹25,000 – ₹2,00,000" },
+      { name: "E‑commerce Store (Shopify / WooCommerce)", desc: "Payment, inventory, product pages", price: "₹40,000 – ₹2,50,000" },
+      { name: "Custom Web Application", desc: "SaaS, dashboard, internal tools", price: "₹80,000 – ₹8,00,000" },
+      { name: "Mobile App (React Native / Flutter)", desc: "iOS & Android, store deployment", price: "₹1,00,000 – ₹15,00,000" },
+      { name: "PWA (Progressive Web App)", desc: "Offline‑capable, installable", price: "₹50,000 – ₹4,00,000" },
+      { name: "CMS Development (WordPress, Sanity)", desc: "Custom themes, plugins", price: "₹20,000 – ₹1,20,000" },
+      { name: "API Development & Integration", desc: "REST, GraphQL, third‑party APIs", price: "₹30,000 – ₹2,00,000" },
+      { name: "Website Maintenance (Monthly)", desc: "Security, updates, backups", price: "₹5,000 – ₹40,000 /month" },
+      { name: "Landing Page Design (High Converting)", desc: "A/B tested, analytics ready", price: "₹10,000 – ₹50,000" },
+      { name: "Custom Chrome Extension", desc: "Browser automation, data extraction", price: "₹20,000 – ₹1,00,000" },
+      { name: "Desktop App (Electron, Tauri)", desc: "Cross‑platform desktop apps", price: "₹70,000 – ₹5,00,000" },
+      { name: "Web Scraping & Data Extraction", desc: "Python, Puppeteer, structured data", price: "₹15,000 – ₹1,20,000" },
+      { name: "GraphQL API Development", desc: "Apollo, Hasura, schema design", price: "₹30,000 – ₹1,50,000" },
+      { name: "Headless CMS Implementation", desc: "Contentful, Strapi, decoupled", price: "₹50,000 – ₹3,00,000" },
+      { name: "Real‑time Application (Socket.io)", desc: "Live chat, notifications, dashboards", price: "₹60,000 – ₹4,00,000" }
+    ] },
+    { id: "data", name: "Data Engineering & Analytics", icon: "fas fa-database", services: [
+      { name: "Data Warehouse Setup (Snowflake, BigQuery)", desc: "ETL pipelines, schema design", price: "₹50,000 – ₹4,00,000" },
+      { name: "ETL/ELT Pipeline Development", desc: "Airbyte, dbt, Airflow", price: "₹40,000 – ₹3,00,000" },
+      { name: "BI Dashboards (Power BI, Tableau)", desc: "Interactive, real‑time dashboards", price: "₹30,000 – ₹2,00,000" },
+      { name: "Real‑time Data Streaming (Kafka, Kinesis)", desc: "Stream processing, analytics", price: "₹70,000 – ₹5,00,000" },
+      { name: "Data Lake Architecture", desc: "S3, ADLS, partition strategies", price: "₹60,000 – ₹4,00,000" },
+      { name: "Data Governance & Quality", desc: "Collibra, Great Expectations", price: "₹40,000 – ₹2,50,000" },
+      { name: "Data Migration (legacy to cloud)", desc: "Zero‑downtime migration", price: "₹30,000 – ₹2,00,000" },
+      { name: "Customer Data Platform (CDP) Implementation", desc: "Segment, Rudderstack, mParticle", price: "₹80,000 – ₹6,00,000" },
+      { name: "Product Analytics (Mixpanel, Amplitude)", desc: "Tracking, cohorts, retention", price: "₹25,000 – ₹1,50,000" },
+      { name: "Data Observability & Monitoring", desc: "Great Expectations, Monte Carlo", price: "₹35,000 – ₹2,00,000" }
+    ] },
+    { id: "cloud-devops", name: "Cloud & DevOps", icon: "fas fa-cloud-upload-alt", services: [
+      { name: "Cloud Migration (AWS, Azure, GCP)", desc: "Lift‑and‑shift, re‑architecture", price: "₹50,000 – ₹5,00,000" },
+      { name: "Kubernetes (EKS/AKS/GKE) Setup", desc: "Cluster, ingress, auto‑scaling", price: "₹60,000 – ₹4,00,000" },
+      { name: "CI/CD Pipeline (GitHub Actions, GitLab CI)", desc: "Automated testing, deployment", price: "₹30,000 – ₹2,00,000" },
+      { name: "Infrastructure as Code (Terraform)", desc: "IaC for reproducible infra", price: "₹40,000 – ₹2,50,000" },
+      { name: "Serverless Architecture (Lambda, Functions)", desc: "API Gateway, DynamoDB", price: "₹35,000 – ₹2,50,000" },
+      { name: "Cloud Cost Optimisation Audits", desc: "Rightsizing, reserved instances", price: "₹20,000 – ₹1,00,000" },
+      { name: "DevOps Consulting (Monitoring, Logging)", desc: "Prometheus, Grafana, ELK", price: "₹25,000 – ₹1,50,000" },
+      { name: "Database Administration (RDS, NoSQL)", desc: "Backup, performance tuning", price: "₹30,000 – ₹2,00,000" }
+    ] },
+    { id: "cybersecurity", name: "Cybersecurity", icon: "fas fa-shield-alt", services: [
+      { name: "Vulnerability Assessment & Penetration Testing (VAPT)", desc: "Web, mobile, network", price: "₹40,000 – ₹2,50,000" },
+      { name: "SOC as a Service (24/7 Monitoring)", desc: "SIEM, alerting, incident response", price: "₹60,000 – ₹4,00,000 /month" },
+      { name: "Compliance Audit (GDPR, ISO 27001, DPDP Act)", desc: "Gap analysis, certification support", price: "₹50,000 – ₹3,00,000" },
+      { name: "Security Awareness Training", desc: "Phishing simulation, e‑learning", price: "₹10,000 – ₹50,000" },
+      { name: "Incident Response & Forensics", desc: "Breach containment, investigation", price: "₹40,000 – ₹2,00,000" },
+      { name: "Cloud Security Posture Management (CSPM)", desc: "Prisma Cloud, Wiz", price: "₹30,000 – ₹1,80,000" },
+      { name: "Web Application Firewall (WAF) Setup", desc: "Cloudflare, AWS WAF", price: "₹20,000 – ₹1,00,000" },
+      { name: "Identity & Access Management (IAM)", desc: "Okta, Auth0, Azure AD", price: "₹35,000 – ₹2,00,000" },
+      { name: "Data Loss Prevention (DLP) Implementation", desc: "Endpoint & network DLP", price: "₹40,000 – ₹2,50,000" },
+      { name: "DevSecOps Integration", desc: "SAST, DAST in CI/CD", price: "₹50,000 – ₹3,00,000" }
+    ] },
+    { id: "arvr", name: "AR/VR & Metaverse", icon: "fas fa-vr-cardboard", services: [
+      { name: "3D Product Visualisation", desc: "WebGL, three.js, realistic rendering", price: "₹30,000 – ₹1,80,000" },
+      { name: "VR Training Simulation", desc: "Oculus, HTC Vive, immersive learning", price: "₹1,00,000 – ₹10,00,000" },
+      { name: "AR Filter for Instagram / Snapchat", desc: "Spark AR, Lens Studio", price: "₹15,000 – ₹80,000" },
+      { name: "Metaverse Space (Spatial.io, VRChat)", desc: "Brand worlds, events", price: "₹1,50,000 – ₹15,00,000" },
+      { name: "360° Virtual Tours", desc: "Real estate, hotels, museums", price: "₹20,000 – ₹1,20,000" }
+    ] },
+    { id: "growth", name: "Growth & Strategy Consulting", icon: "fas fa-bullhorn", services: [
+      { name: "Fractional CMO Services", desc: "Strategic marketing leadership", price: "₹50,000 – ₹2,50,000 /month" },
+      { name: "Product Strategy & MVP Advisory", desc: "Roadmapping, feature prioritisation", price: "₹40,000 – ₹2,00,000" },
+      { name: "Fundraising Pitch Deck & Support", desc: "Investor‑ready deck, financial model", price: "₹30,000 – ₹1,50,000" },
+      { name: "Market Research & Competitor Analysis", desc: "TAM/SAM, competitive landscape", price: "₹25,000 – ₹1,20,000" },
+      { name: "Pricing Strategy Optimisation", desc: "Price elasticity, packaging", price: "₹20,000 – ₹1,00,000" }
+    ] },
+    { id: "blockchain", name: "Blockchain & Web3", icon: "fas fa-link", services: [
+      { name: "Smart Contract Development (Solidity)", desc: "ERC‑20, ERC‑721, audit", price: "₹50,000 – ₹3,50,000" },
+      { name: "NFT Marketplace Development", desc: "Minting, trading, royalties", price: "₹1,00,000 – ₹10,00,000" },
+      { name: "Cryptocurrency Payment Integration", desc: "Bitcoin, ETH, USDC", price: "₹30,000 – ₹1,80,000" },
+      { name: "DeFi Application Prototype", desc: "DEX, lending, staking", price: "₹80,000 – ₹6,00,000" },
+      { name: "Blockchain Audit & Security Review", desc: "Secure code, vulnerabilities", price: "₹50,000 – ₹2,50,000" }
+    ] },
+    { id: "iot", name: "Hardware & IoT", icon: "fas fa-microchip", services: [
+      { name: "IoT Prototype Development", desc: "ESP32, Raspberry Pi, sensors", price: "₹40,000 – ₹2,50,000" },
+      { name: "Embedded Firmware Development", desc: "C/C++, FreeRTOS, Zephyr", price: "₹50,000 – ₹3,50,000" },
+      { name: "Raspberry Pi / Arduino Solutions", desc: "Custom enclosures, dashboards", price: "₹20,000 – ₹1,20,000" },
+      { name: "Sensor Integration & Data Logging", desc: "LoRa, WiFi, cloud upload", price: "₹30,000 – ₹1,80,000" },
+      { name: "Industrial IoT (IIoT) Consulting", desc: "Factory automation, SCADA", price: "₹60,000 – ₹4,00,000" }
+    ] },
+    { id: "design", name: "Design & Creative", icon: "fas fa-pen-fancy", services: [
+      { name: "UI/UX Design (Figma)", desc: "Wireframes, prototypes, design system", price: "₹30,000 – ₹1,50,000" },
+      { name: "Logo & Brand Identity", desc: "Logo, brand guidelines, stationery", price: "₹10,000 – ₹50,000" },
+      { name: "Social Media Graphics", desc: "Monthly pack of 20+ creatives", price: "₹15,000 – ₹60,000 /month" },
+      { name: "Video Editing & Motion Graphics", desc: "YouTube, ads, social reels", price: "₹10,000 – ₹80,000 per project" },
+      { name: "3D Modelling & Animation", desc: "Blender, Maya, product renders", price: "₹25,000 – ₹2,00,000" }
+    ] }
+  ];
+
+  function renderServices() {
+    const root = document.getElementById('services-root');
+    root.innerHTML = '';
+    for (const cat of catalog) {
+      const section = document.createElement('section');
+      section.id = cat.id;
+      section.className = 'service-category scroll-reveal';
+      section.innerHTML = `
+        <div class="flex items-center gap-3 mb-4">
+          <i class="${cat.icon} text-3xl text-amber-500"></i>
+          <h3 class="text-2xl md:text-3xl font-serif">${cat.name}</h3>
+        </div>
+        <div class="service-grid">
+          ${cat.services.map(svc => `
+            <div class="service-card">
+              <div class="service-name">${svc.name}</div>
+              <div class="service-desc">${svc.desc}</div>
+              <div class="service-price">💰 ${svc.price}</div>
+              <a href="join.html" class="request-quote">Request Quote →</a>
+            </div>
+          `).join('')}
+        </div>
+      `;
+      root.appendChild(section);
+    }
+  }
+  renderServices();
+
+  // Scroll reveal for dynamically added elements
+  const reveals = document.querySelectorAll('.scroll-reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Particle background
+  const canvas = document.getElementById('particle-canvas');
+  let ctx = canvas.getContext('2d');
+  let particles = [], w, h;
+  function resizeCanvas() { w=window.innerWidth; h=window.innerHeight; canvas.width=w; canvas.height=h; initParticles(); }
+  function initParticles() { particles=[]; let count=Math.min(80,Math.floor(w/20)); for(let i=0;i<count;i++) particles.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2+1,a:Math.random()*0.3+0.1,dx:(Math.random()-0.5)*0.2,dy:(Math.random()-0.5)*0.2}); }
+  function drawParticles() { if(!ctx) return; ctx.clearRect(0,0,w,h); for(let p of particles){ ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle=`rgba(229,180,80,${p.a})`; ctx.fill(); p.x+=p.dx; p.y+=p.dy; if(p.x<0) p.x=w; if(p.x>w) p.x=0; if(p.y<0) p.y=h; if(p.y>h) p.y=0; } requestAnimationFrame(drawParticles); }
+  window.addEventListener('resize',resizeCanvas); resizeCanvas(); drawParticles();
+</script>
+</body>
+</html>
