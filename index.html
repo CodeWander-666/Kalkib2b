@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>KalkiB2B – India's Horizontal B2B Collective | Fair Lead Distribution</title>
+  <meta name="description" content="India's first horizontal B2B collective. We collect high-intent leads from across India and distribute them fairly among pool partners. Pay only 2% success fee. Barter enabled.">
+  <meta name="keywords" content="B2B directory India, lead distribution, fair lead allocation, digital marketing collective, lead pool, 2% commission, barter marketplace">
+  <meta name="author" content="Kalki Technologies">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <link rel="canonical" href="https://kalkicore.vercel.app/b2b/">
+  <meta property="og:title" content="KalkiB2B – Fair Lead Distribution for Agencies">
+  <meta property="og:description" content="Join the collective. We route qualified leads from metro & non‑metro cities based on relevance, capacity, and performance. Zero upfront, 2% success fee.">
+  <meta property="og:image" content="https://kalkicore.vercel.app/og-b2b.jpg">
+  <meta property="og:url" content="https://kalkicore.vercel.app/b2b/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="KalkiB2B – Scale Horizontally, Pay 2%">
+  <meta name="twitter:description" content="No city lock‑in. We distribute leads intelligently. Join the revolution.">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Kalki Technologies",
+      "brand": "KalkiB2B",
+      "url": "https://kalkicore.vercel.app/b2b",
+      "logo": "https://kalkicore.vercel.app/favicon.ico",
+      "description": "KalkiB2B is a horizontal B2B collective that collects high‑intent leads from all over India and distributes them fairly among pool partners. Pay only 2% success fee.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-6261031710",
+        "contactType": "customer service"
+      }
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Inter',sans-serif; background:#0A0A0F; color:#F0F3FA; overflow-x:hidden; }
+    h1,h2,h3,.font-serif { font-family:'Playfair Display',serif; }
+    .glass-card { background:rgba(20,20,35,0.55); backdrop-filter:blur(16px); border:1px solid rgba(212,175,55,0.25); border-radius:2rem; transition:transform 0.35s ease,border-color 0.3s; }
+    .glass-card:hover { border-color:rgba(212,175,55,0.7); transform:translateY(-6px); }
+    .gradient-gold { background:linear-gradient(135deg,#E9B44C,#C79A2E,#E9B44C); background-size:200% auto; -webkit-background-clip:text; background-clip:text; color:transparent; animation:shimmer 3.5s linear infinite; }
+    @keyframes shimmer { 0%{background-position:0% 50%;} 100%{background-position:200% 50%;} }
+    .btn-glow { position:relative; z-index:1; transition:all 0.3s ease; }
+    .btn-glow::before { content:''; position:absolute; top:-2px; left:-2px; right:-2px; bottom:-2px; background:linear-gradient(45deg,#E9B44C,#C79A2E,#E9B44C); background-size:300% 300%; border-radius:9999px; z-index:-1; opacity:0; transition:opacity 0.4s; }
+    .btn-glow:hover::before { opacity:1; }
+    .scroll-reveal { opacity:0; transform:translateY(35px); transition:opacity 0.8s cubic-bezier(0.2,0.9,0.4,1.1),transform 0.8s ease; }
+    .scroll-reveal.visible { opacity:1; transform:translateY(0); }
+    #particle-canvas { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
+    .stat-number { font-size:2.8rem; font-weight:800; line-height:1; }
+    footer a:hover { color:#E9B44C; }
+    .gradient-border-bottom::after { content:''; position:absolute; bottom:-8px; left:0; width:60px; height:3px; background:linear-gradient(90deg,#E9B44C,#C79A2E); border-radius:3px; }
+  </style>
+</head>
+<body>
+<canvas id="particle-canvas"></canvas>
+
+<nav class="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-xl border-b border-white/10 py-4 px-6 md:px-12">
+  <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <div class="text-2xl font-bold tracking-tight"><span class="gradient-gold">KALKI</span><span class="text-white font-light">B2B</span></div>
+    <div class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
+      <a href="index.html" class="hover:text-amber-400 transition border-b-2 border-amber-500 pb-1">Home</a>
+      <a href="services.html" class="hover:text-amber-400 transition">Services</a>
+      <a href="how-it-works.html" class="hover:text-amber-400 transition">How it Works</a>
+      <a href="pricing.html" class="hover:text-amber-400 transition">Pricing</a>
+      <a href="join.html" class="hover:text-amber-400 transition">Join</a>
+    </div>
+    <a href="join.html" class="bg-gradient-to-r from-amber-600 to-yellow-600 px-5 py-2 rounded-full text-sm font-semibold shadow-lg hover:scale-105 transition">Become Partner →</a>
+  </div>
+</nav>
+
+<main class="relative pt-28 pb-20">
+  <!-- Hero -->
+  <section class="max-w-7xl mx-auto px-6 text-center mb-24">
+    <div class="scroll-reveal">
+      <span class="inline-block px-4 py-1 rounded-full text-xs font-bold tracking-wider border border-amber-500/30 bg-amber-500/10 text-amber-400 mb-5">✦ THE HORIZONTAL TECH REVOLUTION ✦</span>
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif font-bold leading-[1.1]">United We Scale.<br> <span class="gradient-gold">India's First B2B Collective</span></h1>
+      <p class="text-gray-300 text-lg md:text-xl max-w-3xl mx-auto mt-6">Pay only 2% success fee. We collect high‑intent leads from across India and distribute them fairly among pool partners. Barter services. Zero ad spend.</p>
+      <div class="flex flex-wrap gap-5 justify-center mt-10">
+        <a href="pricing.html" class="btn-glow bg-gradient-to-r from-amber-600 to-amber-500 px-8 py-4 rounded-full text-lg font-bold shadow-2xl inline-flex items-center gap-2">Start Horizontal Expansion <i class="fas fa-arrow-right"></i></a>
+        <a href="#policy" class="border border-white/20 px-8 py-4 rounded-full text-lg font-semibold backdrop-blur-sm hover:border-amber-400/70 transition"><i class="fas fa-chart-line mr-2"></i> Lead Distribution Policy</a>
+      </div>
+    </div>
+    <div class="flex flex-wrap justify-center gap-8 mt-16 text-sm text-gray-400">
+      <div class="flex items-center gap-2"><i class="fas fa-chart-line text-amber-500"></i> 100+ Data Analysts</div>
+      <div class="flex items-center gap-2"><i class="fas fa-hand-holding-usd text-amber-500"></i> ₹0 Ad Spend</div>
+      <div class="flex items-center gap-2"><i class="fas fa-exchange-alt text-amber-500"></i> Barter Ecosystem</div>
+      <div class="flex items-center gap-2"><i class="fas fa-city text-amber-500"></i> Pan‑India Leads</div>
+      <div class="flex items-center gap-2"><i class="fas fa-certificate text-amber-500"></i> MSME / Startup India</div>
+    </div>
+  </section>
+
+  <!-- Vision & Mission -->
+  <section class="max-w-7xl mx-auto px-6 mb-24">
+    <div class="grid md:grid-cols-2 gap-10">
+      <div class="glass-card p-8 scroll-reveal"><div class="gradient-border-bottom inline-block pb-2 relative"><i class="fas fa-eye text-3xl text-amber-500 mr-3"></i><h2 class="text-3xl font-serif inline">Our Vision</h2></div><p class="text-gray-300 text-base mt-4 leading-relaxed">To build India's most intelligent horizontal B2B network – where every digital agency, tech provider, and freelancer can grow without the friction of ad spend, middlemen, or predatory commissions.</p></div>
+      <div class="glass-card p-8 scroll-reveal"><div class="gradient-border-bottom inline-block pb-2 relative"><i class="fas fa-bullseye text-3xl text-amber-500 mr-3"></i><h2 class="text-3xl font-serif inline">Our Mission</h2></div><p class="text-gray-300 text-base mt-4 leading-relaxed">Democratise lead generation for Indian service providers. Reduce client acquisition cost to zero upfront and 2% on success. Enable barter as a primary transaction mode. Empower 10,000 agencies by 2028.</p></div>
+    </div>
+  </section>
+
+  <!-- Lead Distribution Policy (Fair & Strategic) -->
+  <section id="policy" class="max-w-7xl mx-auto px-6 mb-24">
+    <div class="text-center mb-12 scroll-reveal">
+      <h2 class="text-4xl md:text-5xl font-serif">Fair & Transparent <span class="gradient-gold">Lead Distribution</span></h2>
+      <p class="text-gray-400 max-w-2xl mx-auto mt-2">How we collect and allocate high‑intent leads among pool partners</p>
+    </div>
+    <div class="glass-card p-8 md:p-10 scroll-reveal">
+      <div class="grid md:grid-cols-2 gap-10">
+        <div>
+          <i class="fas fa-charging-station text-4xl text-amber-500 mb-3"></i>
+          <h3 class="text-2xl font-serif">1. Lead Collection</h3>
+          <p class="text-gray-300 text-sm mt-2">We aggregate leads from multiple channels – KalkiB2B website, WhatsApp chatbots, social media campaigns, partner referrals, and our AI‑powered outreach engine. Every lead is pre‑qualified by our data science team (budget, timeline, location, service needed).</p>
+          <div class="bg-white/5 rounded-xl p-3 mt-4 text-xs text-gray-400">~5,000+ monthly lead volume (projected by Q4 2026)</div>
+        </div>
+        <div>
+          <i class="fas fa-filter text-4xl text-amber-500 mb-3"></i>
+          <h3 class="text-2xl font-serif">2. Intelligent Scoring</h3>
+          <p class="text-gray-300 text-sm mt-2">Each lead gets an “intent score” (0‑100) based on budget, response rate, project clarity, and industry vertical. Only leads with score ≥70 are routed to partners – no spam, no low‑intent inquiries.</p>
+        </div>
+        <div>
+          <i class="fas fa-chart-pie text-4xl text-amber-500 mb-3"></i>
+          <h3 class="text-2xl font-serif">3. Distribution Algorithm</h3>
+          <p class="text-gray-300 text-sm mt-2">Leads are distributed based on a weighted formula:<br> <strong>40% relevance</strong> (partner’s primary service categories + location match)<br> <strong>30% capacity</strong> (current open leads / project load)<br> <strong>20% performance</strong> (historical conversion rate, response time)<br> <strong>10% random</strong> (to ensure fairness and opportunity for new partners).</p>
+        </div>
+        <div>
+          <i class="fas fa-hand-holding-heart text-4xl text-amber-500 mb-3"></i>
+          <h3 class="text-2xl font-serif">4. Fairness Guarantees</h3>
+          <ul class="text-gray-300 text-sm space-y-1 mt-2">
+            <li>✓ No single partner can receive more than 15% of total leads in a 30‑day window.</li>
+            <li>✓ New partners get a “boosting factor” for first 60 days to ensure they receive opportunities.</li>
+            <li>✓ Partners can set lead capacity limits (e.g., max 10 leads/week).</li>
+            <li>✓ Full transparency: each lead comes with a score & routing reason visible in dashboard.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-8 bg-black/40 rounded-2xl p-5 border border-amber-500/20 text-center">
+        <p class="text-amber-400 font-semibold">Every partner receives leads – not just top performers. We actively rebalance the pool.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Barter Model (Service Swap & Sub‑contracting) -->
+  <section class="max-w-7xl mx-auto px-6 mb-24">
+    <div class="glass-card p-8 md:p-12 scroll-reveal">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <i class="fas fa-exchange-alt text-5xl text-amber-500 mb-4"></i>
+          <h2 class="text-3xl md:text-4xl font-serif">How Barter <span class="gradient-gold">Works in the Pool</span></h2>
+          <p class="text-gray-300 text-base mt-3 leading-relaxed">Partners can exchange services directly or offer their expertise to other partners' clients. KalkiB2B charges only <strong class="text-amber-400">2% of the project value</strong> (capped at ₹25k) from the receiving agency.</p>
+          <div class="bg-white/5 rounded-xl p-4 mt-4">
+            <p class="text-sm font-mono text-gray-300">Example: Agency A provides ₹1,00,000 SEO to Agency B. Agency B provides ₹1,00,000 web development to Agency A. Net cash = ₹0. KalkiB2B commission = ₹2,000 (only one side).</p>
+          </div>
+          <p class="text-gray-300 text-sm mt-4">You can also offer white‑label services to other partners – they sell to their clients, you deliver, and both earn. KalkiB2B handles the matchmaking and invoicing.</p>
+        </div>
+        <div class="bg-black/40 rounded-2xl p-6 border border-amber-500/20">
+          <p class="text-amber-400 font-bold text-center text-lg">Why barter is revolutionary</p>
+          <ul class="mt-3 space-y-2 text-sm text-gray-300">
+            <li>✓ <strong>Preserve cash</strong> – use your service capacity as currency</li>
+            <li>✓ <strong>Win larger projects</strong> by bundling partner services</li>
+            <li>✓ <strong>Build a trusted network</strong> across India</li>
+            <li>✓ <strong>Only 2% success fee</strong> – lowest in industry</li>
+            <li>✓ <strong>KalkiB2B acts as guarantor</strong> – we mediate quality & timelines</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How Companies Collaborate -->
+  <section class="max-w-7xl mx-auto px-6 mb-24">
+    <div class="glass-card p-8 md:p-12 scroll-reveal text-center">
+      <i class="fas fa-building text-5xl text-amber-500 mb-3"></i>
+      <h2 class="text-3xl md:text-4xl font-serif">For Digital Marketing & Tech Companies – <span class="gradient-gold">Collaborate, Don't Compete</span></h2>
+      <p class="text-gray-400 max-w-2xl mx-auto mt-2">You keep your client. We connect you with vetted partners to deliver services you don't offer in‑house – and earn a referral.</p>
+      <div class="grid md:grid-cols-3 gap-6 mt-10">
+        <div><i class="fas fa-hand-holding-heart text-4xl text-amber-500 mb-2"></i><h3 class="text-xl font-bold">White‑Label Delivery</h3><p class="text-sm text-gray-300">Outsource SEO, PPC, web dev to verified partners. Your client never knows.</p></div>
+        <div><i class="fas fa-charging-station text-4xl text-amber-500 mb-2"></i><h3 class="text-xl font-bold">2% Commission</h3><p class="text-sm text-gray-300">You pay only 2% of subcontract value – no hidden fees.</p></div>
+        <div><i class="fas fa-chart-line text-4xl text-amber-500 mb-2"></i><h3 class="text-xl font-bold">Scale Offerings</h3><p class="text-sm text-gray-300">Bid on larger projects by bundling services from the pool.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Categories (Detailed) -->
+  <section class="max-w-7xl mx-auto px-6 mb-24">
+    <div class="text-center mb-12 scroll-reveal">
+      <h2 class="text-4xl md:text-5xl font-serif">Full‑Spectrum <span class="gradient-gold">Tech & AI Services</span></h2>
+      <p class="text-gray-400 max-w-2xl mx-auto mt-2">35+ categories, 200+ sub‑services – all under one collective</p>
+    </div>
+    <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-5">
+      <div class="glass-card p-4 scroll-reveal"><i class="fas fa-robot text-2xl text-amber-500 mb-2"></i><h3 class="font-bold">AI & Machine Learning</h3><p class="text-xs text-gray-400">LLM, computer vision, predictive models</p></div>
+      <div class="glass-card p-4 scroll-reveal"><i class="fas fa-chart-line text-2xl text-amber-500 mb-2"></i><h3 class="font-bold">Digital Marketing</h3><p class="text-xs text-gray-400">SEO, PPC, social media, ORM, influencer</p></div>
+      <div class="glass-card p-4 scroll-reveal"><i class="fas fa-code text-2xl text-amber-500 mb-2"></i><h3 class="font-bold">Web & App Dev</h3><p class="text-xs text-gray-400">Next.js, React Native, e‑commerce</p></div>
+      <div class="glass-card p-4 scroll-reveal"><i class="fas fa-database text-2xl text-amber-500 mb-2"></i><h3 class="font-bold">Data Engineering</h3><p class="text-xs text-gray-400">Data lakes, BI dashboards, real‑time</p></div>
+      <div class="glass-card p-4 scroll-reveal"><i class="fas fa-cloud-upload-alt text-2xl text-amber-500 mb-2"></i><h3 class="font-bold">Cloud & DevOps</h3><p class="text-xs text-gray-400">AWS, GCP, Azure, Kubernetes, CI/CD</p></div>
+      <div class="glass-card p-4 scroll-reveal"><i class="fas fa-shield-alt text-2xl text-amber-500 mb-2"></i><h3 class="font-bold">Cybersecurity</h3><p class="text-xs text-gray-400">VAPT, SOC, compliance (ISO, GDPR)</p></div>
+      <div class="glass-card p-4 scroll-reveal"><i class="fas fa-vr-cardboard text-2xl text-amber-500 mb-2"></i><h3 class="font-bold">AR/VR & Metaverse</h3><p class="text-xs text-gray-400">3D modelling, virtual tours</p></div>
+      <div class="glass-card p-4 scroll-reveal"><i class="fas fa-bullhorn text-2xl text-amber-500 mb-2"></i><h3 class="font-bold">Growth & Consultancy</h3><p class="text-xs text-gray-400">Fractional CMO, fundraising support</p></div>
+    </div>
+    <div class="text-center mt-8"><a href="services.html" class="text-amber-400 hover:underline font-medium">View full list of 200+ sub‑services →</a></div>
+  </section>
+
+  <!-- Pricing Overview -->
+  <section class="max-w-7xl mx-auto px-6 mb-24">
+    <div class="text-center mb-10 scroll-reveal">
+      <h2 class="text-4xl md:text-5xl font-serif">Simple, <span class="gradient-gold">Zero‑Risk Pricing</span></h2>
+      <p class="text-gray-400">Choose a plan that matches your growth stage</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="glass-card p-6 text-center scroll-reveal"><i class="fas fa-seedling text-3xl text-amber-500"></i><h3 class="text-xl font-bold mt-2">Pilot</h3><div class="text-2xl font-bold my-2">₹5k<span class="text-sm text-gray-400">/month</span></div><p class="text-sm text-gray-300">10 leads/month, basic barter, standard distribution</p><a href="pricing.html" class="inline-block mt-4 text-amber-400 text-sm">Learn more →</a></div>
+      <div class="glass-card p-6 text-center scroll-reveal border-2 border-amber-500/40"><i class="fas fa-chart-line text-3xl text-amber-500"></i><h3 class="text-xl font-bold mt-2">Scale Partner</h3><div class="text-2xl font-bold my-2">₹12k<span class="text-sm text-gray-400">/month</span></div><p class="text-sm text-gray-300">30 leads/month, priority routing, full barter, analytics</p><a href="pricing.html" class="inline-block mt-4 text-amber-400 text-sm">Most popular →</a></div>
+      <div class="glass-card p-6 text-center scroll-reveal"><i class="fas fa-building text-3xl text-amber-500"></i><h3 class="text-xl font-bold mt-2">Enterprise</h3><div class="text-2xl font-bold my-2">Custom</div><p class="text-sm text-gray-300">Unlimited leads, white‑label, dedicated AM</p><a href="pricing.html" class="inline-block mt-4 text-amber-400 text-sm">Contact us →</a></div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="max-w-7xl mx-auto px-6 mb-24">
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="glass-card p-6 scroll-reveal"><i class="fas fa-quote-left text-3xl text-amber-500 mb-3"></i><p class="text-gray-300 italic">“The lead distribution algorithm is fair – we get consistent opportunities without burning cash on ads. 2% success fee is a no‑brainer.”</p><p class="mt-3 text-amber-400 font-semibold">– Rohan Mehta, Growth Hackers</p></div>
+      <div class="glass-card p-6 scroll-reveal"><i class="fas fa-quote-left text-3xl text-amber-500 mb-3"></i><p class="text-gray-300 italic">“Barter helped us enter new service verticals without upfront investment. KalkiB2B is the future of agency collaboration.”</p><p class="mt-3 text-amber-400 font-semibold">– Anjali V., AI Startup Founder</p></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="max-w-5xl mx-auto px-6 text-center">
+    <div class="bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent rounded-2xl p-8 border border-amber-500/20">
+      <h3 class="text-2xl md:text-3xl font-serif">Ready to join India's horizontal tech revolution?</h3>
+      <p class="text-gray-300 mt-2">First 50 agencies get 1 month free trial + lead boosting for 60 days.</p>
+      <a href="join.html" class="inline-block mt-5 bg-amber-600 px-6 py-3 rounded-full text-white font-semibold hover:scale-105 transition">Request Invitation →</a>
+      <p class="text-xs text-gray-500 mt-4">Call/WhatsApp: +91 6261031710 | hello@kalki.tech</p>
+    </div>
+  </div>
+</main>
+
+<footer class="border-t border-white/10 py-10 mt-16 text-center text-gray-500 text-sm">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-wrap justify-center gap-6 mb-5">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="join.html">Join</a>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </div>
+    <p>© 2026 KalkiB2B – A Kalki Technologies Initiative (MSME Registered, Startup India, Vocal for Local)</p>
+    <p class="text-xs mt-2">Empowering Indian agencies with horizontal growth, zero ad spend, and fair lead distribution.</p>
+  </div>
+</footer>
+
+<script>
+  const canvas = document.getElementById('particle-canvas');
+  let ctx = canvas.getContext('2d');
+  let particles = [], w, h;
+  function resizeCanvas() { w=window.innerWidth; h=window.innerHeight; canvas.width=w; canvas.height=h; initParticles(); }
+  function initParticles() { particles=[]; let count=Math.min(80,Math.floor(w/20)); for(let i=0;i<count;i++) particles.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2+1,a:Math.random()*0.3+0.1,dx:(Math.random()-0.5)*0.2,dy:(Math.random()-0.5)*0.2}); }
+  function drawParticles() { if(!ctx) return; ctx.clearRect(0,0,w,h); for(let p of particles){ ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle=`rgba(229,180,80,${p.a})`; ctx.fill(); p.x+=p.dx; p.y+=p.dy; if(p.x<0) p.x=w; if(p.x>w) p.x=0; if(p.y<0) p.y=h; if(p.y>h) p.y=0; } requestAnimationFrame(drawParticles); }
+  window.addEventListener('resize',resizeCanvas); resizeCanvas(); drawParticles();
+  const reveals = document.querySelectorAll('.scroll-reveal');
+  const observer = new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); }); },{threshold:0.15});
+  reveals.forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
