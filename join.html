@@ -25,7 +25,6 @@
   <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
   <style>
-    /* ... (your existing CSS, unchanged) ... */
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family:'Inter',sans-serif; background:#0A0A0F; color:#F0F3FA; overflow-x:hidden; }
     h1,h2,h3,.font-serif { font-family:'Playfair Display',serif; }
@@ -44,13 +43,15 @@
     .form-label { display: block; margin-bottom: 0.3rem; font-size: 0.8rem; font-weight: 500; color: #E9B44C; }
     .tom-select .ts-dropdown, .tom-select .ts-control { background-color: #0A0A0F !important; color: white !important; border-radius: 1rem; }
     .tom-select .ts-dropdown .active { background-color: #E9B44C !important; color: black; }
+    .toast { position: fixed; bottom: 2rem; right: 2rem; z-index: 200; background: #1a1a2e; border-left: 4px solid #E9B44C; padding: 1rem 1.5rem; border-radius: 1rem; backdrop-filter: blur(8px); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3); transition: opacity 0.3s; }
     footer a:hover { color:#E9B44C; }
+    .error-text { color: #ff6b6b; font-size: 0.75rem; margin-top: 0.25rem; display: none; }
+    .success-toast { border-left-color: #4caf50; background: #1a2a1a; }
   </style>
 </head>
 <body>
 <canvas id="particle-canvas"></canvas>
 
-<!-- ... (your existing navigation) ... -->
 <nav class="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-xl border-b border-white/10 py-4 px-6 md:px-12">
   <div class="max-w-7xl mx-auto flex justify-between items-center">
     <div class="text-2xl font-bold tracking-tight"><span class="gradient-gold">KALKI</span><span class="text-white font-light">B2B</span></div>
@@ -66,52 +67,120 @@
 </nav>
 
 <main class="relative pt-28 pb-20">
-  <!-- ... (your existing hero section) ... -->
   <section class="max-w-7xl mx-auto px-6 text-center mb-16 scroll-reveal">
     <span class="inline-block px-4 py-1 rounded-full text-xs font-bold border border-amber-500/30 bg-amber-500/10 text-amber-400 mb-4">✦ BECOME A PARTNER ✦</span>
     <h1 class="text-5xl md:text-7xl font-serif font-bold leading-[1.1]">Join India's <span class="gradient-gold">Horizontal Growth Movement</span></h1>
     <p class="text-gray-300 text-lg max-w-3xl mx-auto mt-4">Get qualified leads, barter services, and scale across 50+ cities – without burning cash on ads. First 50 agencies get <strong class="text-amber-400">1 month free trial + ₹20k barter credits</strong>.</p>
   </section>
 
-  <!-- ... (your existing application form with corrected script) ... -->
   <section class="max-w-4xl mx-auto px-6 mb-20">
     <div class="glass-card p-8 md:p-12 scroll-reveal">
       <h2 class="text-3xl font-serif text-center mb-2">Apply for Partnership</h2>
       <p class="text-gray-400 text-center mb-6">No upfront fees. Only pay when you close deals.</p>
+      <div id="formStatus" class="mb-4 hidden"></div>
       <form id="partnerForm" class="grid md:grid-cols-2 gap-5">
-        <!-- ... (your existing form inputs) ... -->
-        <div><label class="form-label">Agency / Business Name *</label><input type="text" id="agency_name" class="form-input" required></div>
-        <div><label class="form-label">Your Full Name *</label><input type="text" id="full_name" class="form-input" required></div>
-        <div><label class="form-label">Email Address *</label><input type="email" id="email" class="form-input" required></div>
-        <div><label class="form-label">WhatsApp Number *</label><input type="tel" id="whatsapp" class="form-input" required></div>
+        <div>
+          <label class="form-label">Agency / Business Name *</label>
+          <input type="text" id="agency_name" class="form-input" required>
+          <div class="error-text" data-for="agency_name">Please enter your agency name.</div>
+        </div>
+        <div>
+          <label class="form-label">Your Full Name *</label>
+          <input type="text" id="full_name" class="form-input" required>
+          <div class="error-text" data-for="full_name">Please enter your full name.</div>
+        </div>
+        <div>
+          <label class="form-label">Email Address *</label>
+          <input type="email" id="email" class="form-input" required>
+          <div class="error-text" data-for="email">Enter a valid email address.</div>
+        </div>
+        <div>
+          <label class="form-label">WhatsApp Number *</label>
+          <input type="tel" id="whatsapp" class="form-input" required placeholder="+91 XXXXXXXXXX">
+          <div class="error-text" data-for="whatsapp">Enter a valid WhatsApp number.</div>
+        </div>
         
-        <!-- Searchable multi‑select for 200+ services -->
-        <div class="md:col-span-2"><label class="form-label">Primary Services (Select up to 5) *</label>
+        <div class="md:col-span-2">
+          <label class="form-label">Primary Services (Select up to 5) *</label>
           <select id="primary_services" multiple placeholder="Type to search services..."></select>
-          <p class="text-xs text-gray-500 mt-1">Start typing – 200+ options.</p>
+          <div class="error-text" data-for="primary_services">Select at least one service.</div>
         </div>
 
-        <div><label class="form-label">Primary Location (City / Region) *</label>
-          <input type="text" id="location" class="form-input" placeholder="e.g., Mumbai, Delhi, pan-India" required></div>
+        <div>
+          <label class="form-label">Primary Location (City / Region) *</label>
+          <input type="text" id="location" class="form-input" placeholder="e.g., Mumbai, Delhi, pan-India" required>
+          <div class="error-text" data-for="location">Enter your primary location.</div>
+        </div>
         
-        <div><label class="form-label">Preferred Plan *</label>
-          <select id="preferred_plan" class="form-input"><option>Pilot (₹5,000/month)</option><option selected>Scale Partner (₹12,000/month)</option><option>Enterprise (custom)</option></select></div>
-        <div><label class="form-label">Estimated monthly project volume</label>
-          <select id="monthly_volume" class="form-input"><option>Less than ₹1L</option><option>₹1L – ₹5L</option><option>₹5L – ₹15L</option><option>Above ₹15L</option></select></div>
-        <div class="md:col-span-2"><label class="form-label">How did you hear about us?</label><input type="text" id="hear_about" class="form-input"></div>
-        <div class="md:col-span-2"><label class="form-label">Any message or questions?</label><textarea id="message" rows="3" class="form-input" placeholder="Tell us about your agency, team size, etc."></textarea></div>
-        <div class="md:col-span-2 flex items-center gap-2"><input type="checkbox" id="terms" required><span class="text-xs text-gray-300">I agree to the <a href="#" class="text-amber-400">Terms & Conditions</a> and <a href="#" class="text-amber-400">Privacy Policy</a>.</span></div>
-        <div class="md:col-span-2"><button type="submit" class="btn-glow bg-gradient-to-r from-amber-600 to-amber-500 w-full py-3 rounded-full text-white font-bold text-lg transition">Submit Application →</button></div>
+        <div>
+          <label class="form-label">Preferred Plan *</label>
+          <select id="preferred_plan" class="form-input">
+            <option>Pilot (₹5,000/month)</option>
+            <option selected>Scale Partner (₹12,000/month)</option>
+            <option>Enterprise (custom)</option>
+          </select>
+        </div>
+        <div>
+          <label class="form-label">Estimated monthly project volume</label>
+          <select id="monthly_volume" class="form-input">
+            <option>Less than ₹1L</option>
+            <option>₹1L – ₹5L</option>
+            <option>₹5L – ₹15L</option>
+            <option>Above ₹15L</option>
+          </select>
+        </div>
+        <div class="md:col-span-2">
+          <label class="form-label">How did you hear about us?</label>
+          <input type="text" id="hear_about" class="form-input" placeholder="Google, referral, social media, etc.">
+        </div>
+        <div class="md:col-span-2">
+          <label class="form-label">Any message or questions?</label>
+          <textarea id="message" rows="3" class="form-input" placeholder="Tell us about your agency, team size, etc."></textarea>
+        </div>
+        <div class="md:col-span-2 flex items-center gap-2">
+          <input type="checkbox" id="terms" required>
+          <span class="text-xs text-gray-300">I agree to the <a href="#" class="text-amber-400">Terms & Conditions</a> and <a href="#" class="text-amber-400">Privacy Policy</a>.</span>
+        </div>
+        <div class="md:col-span-2">
+          <button type="submit" class="btn-glow bg-gradient-to-r from-amber-600 to-amber-500 w-full py-3 rounded-full text-white font-bold text-lg transition">Submit Application →</button>
+        </div>
       </form>
       <p class="text-center text-xs text-gray-500 mt-4">We'll contact you within 48 hours.</p>
     </div>
   </section>
 
-  <!-- ... (your existing benefits, testimonials, FAQ sections) ... -->
+  <!-- Benefits, testimonials, FAQ (condensed but elegant) -->
+  <section class="max-w-7xl mx-auto px-6 mb-20">
+    <div class="glass-card p-8 md:p-12 scroll-reveal">
+      <h2 class="text-3xl font-serif text-center mb-8">What You Get as a Partner</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div><i class="fas fa-chart-line text-3xl text-amber-500 mb-2"></i><h3 class="font-bold text-lg">Qualified Leads</h3><p class="text-sm text-gray-400">AI + human verified leads, intent score ≥70.</p></div>
+        <div><i class="fas fa-handshake text-3xl text-amber-500 mb-2"></i><h3 class="font-bold text-lg">Barter Ecosystem</h3><p class="text-sm text-gray-400">Exchange services, pay only 2% commission.</p></div>
+        <div><i class="fas fa-chalkboard-user text-3xl text-amber-500 mb-2"></i><h3 class="font-bold text-lg">Co‑marketing Support</h3><p class="text-sm text-gray-400">Featured in directory, social campaigns.</p></div>
+        <div><i class="fas fa-chart-pie text-3xl text-amber-500 mb-2"></i><h3 class="font-bold text-lg">Transparent Dashboard</h3><p class="text-sm text-gray-400">Analytics, lead tracking, barter credits.</p></div>
+        <div><i class="fas fa-charging-station text-3xl text-amber-500 mb-2"></i><h3 class="font-bold text-lg">Zero Risk Model</h3><p class="text-sm text-gray-400">Pay only 2% after you close a deal.</p></div>
+        <div><i class="fas fa-city text-3xl text-amber-500 mb-2"></i><h3 class="font-bold text-lg">Pan‑India Reach</h3><p class="text-sm text-gray-400">Leads routed from any city.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-6 mb-20">
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="glass-card p-6 scroll-reveal"><i class="fas fa-quote-left text-3xl text-amber-500 mb-3"></i><p class="text-gray-300 italic">“We closed ₹8L worth of projects through KalkiB2B leads. The 2% fee is negligible.”</p><p class="mt-3 text-amber-400 font-semibold">– Akash R., Delhi</p></div>
+      <div class="glass-card p-6 scroll-reveal"><i class="fas fa-quote-left text-3xl text-amber-500 mb-3"></i><p class="text-gray-300 italic">“Barter saved us ₹2.5L in cash. KalkiB2B is a game changer.”</p><p class="mt-3 text-amber-400 font-semibold">– Priya S., Bengaluru</p></div>
+    </div>
+  </section>
+
+  <div class="max-w-5xl mx-auto px-6 text-center">
+    <div class="bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent rounded-2xl p-8 border border-amber-500/20">
+      <h3 class="text-2xl md:text-3xl font-serif">Limited slots – secure your place today</h3>
+      <p class="text-gray-300 mt-2">First 50 agencies get 1 month free trial + ₹20k barter credits.</p>
+      <a href="#partnerForm" class="inline-block mt-5 bg-amber-600 px-6 py-3 rounded-full text-white font-semibold hover:scale-105 transition">Apply Now →</a>
+    </div>
+  </div>
 </main>
 
 <footer class="border-t border-white/10 py-10 mt-16 text-center text-gray-500 text-sm">
-  <!-- ... (your existing footer) ... -->
   <div class="max-w-7xl mx-auto px-6">
     <div class="flex flex-wrap justify-center gap-6 mb-5">
       <a href="index.html">Home</a>
@@ -127,16 +196,55 @@
 </footer>
 
 <script>
-  // ========== SUPABASE CONFIG ==========
+  // ========== SUPABASE CONFIG (replace with env vars in production Next.js) ==========
   const SUPABASE_URL = 'https://rsoalijmkejhxufjswuk.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJzb2FsaWpta2VqaHh1Zmpzd3VrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA4MjQ5NTcsImV4cCI6MjA5NjQwMDk1N30.503N5bNTMYNwdkNNEG-6OPrNzoCf-HmErIOBq52Sak8';
   const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   // ========== 200+ SERVICES LIST ==========
-  const allServices = [ "AI & Machine Learning", "Digital Marketing", "Web & App Development", "Data Engineering & Analytics", "Cloud & DevOps", "Cybersecurity", "AR/VR & Metaverse", "Growth & Strategy Consulting", "Blockchain & Web3", "Hardware & IoT", "Design & Creative", "SEO / Organic Growth", "PPC / Google Ads", "Social Media Marketing", "Content Marketing", "Email Marketing", "ORM / Reputation Management", "Influencer Marketing", "LinkedIn Lead Generation", "WhatsApp Marketing Automation", "Google Business Profile Optimization", "Local SEO", "E‑commerce SEO (Amazon, Flipkart)", "Programmatic SEO", "Conversion Rate Optimization (CRO)", "YouTube SEO & Channel Growth", "Fractional CMO Services", "Product Strategy & MVP Advisory", "Fundraising Pitch Deck Support", "Market Research & Competitor Analysis", "Pricing Strategy", "Custom LLM Fine‑tuning (GPT, Llama)", "Chatbot Development (WhatsApp, Web)", "Computer Vision", "Predictive Analytics & Forecasting", "AI Agent Development (AutoGPT, CrewAI)", "Speech‑to‑Text & TTS", "Recommendation Engine", "AI Content Moderation", "Document Intelligence (OCR + NLP)", "LLM Integration (OpenAI, Anthropic)", "MLOps & Model Deployment", "Explainable AI (XAI) Audits", "Generative AI for Images (Stable Diffusion)", "Federated Learning", "Time Series Forecasting", "Natural Language Processing (NER, Sentiment)", "Static Website (5-10 pages)", "Dynamic Next.js / React Website", "E‑commerce Store (Shopify / WooCommerce)", "Custom Web Application", "Mobile App (React Native / Flutter)", "PWA (Progressive Web App)", "CMS Development (WordPress, Sanity)", "API Development & Integration", "Website Maintenance (Monthly)", "Landing Page Design", "Custom Chrome Extension", "Desktop App (Electron)", "Web Scraping & Data Extraction", "GraphQL API Development", "Headless CMS Implementation", "Real‑time Application", "Data Warehouse Setup (Snowflake, BigQuery)", "ETL/ELT Pipeline Development", "BI Dashboards (Power BI, Tableau)", "Real‑time Data Streaming (Kafka)", "Data Lake Architecture", "Data Governance & Quality", "Data Migration", "Customer Data Platform (CDP) Implementation", "Product Analytics (Mixpanel, Amplitude)", "Cloud Migration (AWS, Azure, GCP)", "Kubernetes (EKS/AKS/GKE) Setup", "CI/CD Pipeline (GitHub Actions)", "Infrastructure as Code (Terraform)", "Serverless Architecture (Lambda)", "Cloud Cost Optimisation Audits", "DevOps Consulting", "Database Administration", "Vulnerability Assessment & Penetration Testing (VAPT)", "SOC as a Service (24/7 Monitoring)", "Compliance Audit (GDPR, ISO 27001, DPDP Act)", "Security Awareness Training", "Incident Response & Forensics", "Cloud Security Posture Management (CSPM)", "Web Application Firewall (WAF) Setup", "Identity & Access Management (IAM)", "Data Loss Prevention (DLP) Implementation", "DevSecOps Integration", "3D Product Visualisation", "VR Training Simulation", "AR Filter for Instagram / Snapchat", "Metaverse Space (Spatial.io)", "360° Virtual Tours", "Smart Contract Development (Solidity)", "NFT Marketplace Development", "Cryptocurrency Payment Integration", "DeFi Application Prototype", "Blockchain Audit", "IoT Prototype Development", "Embedded Firmware Development", "Raspberry Pi / Arduino Solutions", "Sensor Integration", "Industrial IoT (IIoT) Consulting", "UI/UX Design (Figma)", "Logo & Brand Identity", "Social Media Graphics", "Video Editing & Motion Graphics", "3D Modelling & Animation" ];
+  const allServices = [
+    "AI & Machine Learning", "Digital Marketing", "Web & App Development", "Data Engineering & Analytics",
+    "Cloud & DevOps", "Cybersecurity", "AR/VR & Metaverse", "Growth & Strategy Consulting",
+    "Blockchain & Web3", "Hardware & IoT", "Design & Creative", "SEO / Organic Growth",
+    "PPC / Google Ads", "Social Media Marketing", "Content Marketing", "Email Marketing",
+    "ORM / Reputation Management", "Influencer Marketing", "LinkedIn Lead Generation",
+    "WhatsApp Marketing Automation", "Google Business Profile Optimization", "Local SEO",
+    "E‑commerce SEO (Amazon, Flipkart)", "Programmatic SEO", "Conversion Rate Optimization (CRO)",
+    "YouTube SEO & Channel Growth", "Fractional CMO Services", "Product Strategy & MVP Advisory",
+    "Fundraising Pitch Deck Support", "Market Research & Competitor Analysis", "Pricing Strategy",
+    "Custom LLM Fine‑tuning (GPT, Llama)", "Chatbot Development (WhatsApp, Web)", "Computer Vision",
+    "Predictive Analytics & Forecasting", "AI Agent Development (AutoGPT, CrewAI)", "Speech‑to‑Text & TTS",
+    "Recommendation Engine", "AI Content Moderation", "Document Intelligence (OCR + NLP)",
+    "LLM Integration (OpenAI, Anthropic)", "MLOps & Model Deployment", "Explainable AI (XAI) Audits",
+    "Generative AI for Images (Stable Diffusion)", "Federated Learning", "Time Series Forecasting",
+    "Natural Language Processing (NER, Sentiment)", "Static Website (5-10 pages)", "Dynamic Next.js / React Website",
+    "E‑commerce Store (Shopify / WooCommerce)", "Custom Web Application", "Mobile App (React Native / Flutter)",
+    "PWA (Progressive Web App)", "CMS Development (WordPress, Sanity)", "API Development & Integration",
+    "Website Maintenance (Monthly)", "Landing Page Design", "Custom Chrome Extension", "Desktop App (Electron)",
+    "Web Scraping & Data Extraction", "GraphQL API Development", "Headless CMS Implementation", "Real‑time Application",
+    "Data Warehouse Setup (Snowflake, BigQuery)", "ETL/ELT Pipeline Development", "BI Dashboards (Power BI, Tableau)",
+    "Real‑time Data Streaming (Kafka)", "Data Lake Architecture", "Data Governance & Quality", "Data Migration",
+    "Customer Data Platform (CDP) Implementation", "Product Analytics (Mixpanel, Amplitude)", "Cloud Migration (AWS, Azure, GCP)",
+    "Kubernetes (EKS/AKS/GKE) Setup", "CI/CD Pipeline (GitHub Actions)", "Infrastructure as Code (Terraform)",
+    "Serverless Architecture (Lambda)", "Cloud Cost Optimisation Audits", "DevOps Consulting", "Database Administration",
+    "Vulnerability Assessment & Penetration Testing (VAPT)", "SOC as a Service (24/7 Monitoring)",
+    "Compliance Audit (GDPR, ISO 27001, DPDP Act)", "Security Awareness Training", "Incident Response & Forensics",
+    "Cloud Security Posture Management (CSPM)", "Web Application Firewall (WAF) Setup", "Identity & Access Management (IAM)",
+    "Data Loss Prevention (DLP) Implementation", "DevSecOps Integration", "3D Product Visualisation", "VR Training Simulation",
+    "AR Filter for Instagram / Snapchat", "Metaverse Space (Spatial.io)", "360° Virtual Tours", "Smart Contract Development (Solidity)",
+    "NFT Marketplace Development", "Cryptocurrency Payment Integration", "DeFi Application Prototype", "Blockchain Audit",
+    "IoT Prototype Development", "Embedded Firmware Development", "Raspberry Pi / Arduino Solutions", "Sensor Integration",
+    "Industrial IoT (IIoT) Consulting", "UI/UX Design (Figma)", "Logo & Brand Identity", "Social Media Graphics",
+    "Video Editing & Motion Graphics", "3D Modelling & Animation"
+  ];
   const uniqueServices = [...new Set(allServices)];
   const serviceSelect = document.getElementById('primary_services');
-  uniqueServices.forEach(svc => { const opt = document.createElement('option'); opt.value = svc; opt.textContent = svc; serviceSelect.appendChild(opt); });
+  uniqueServices.forEach(svc => {
+    const opt = document.createElement('option');
+    opt.value = svc;
+    opt.textContent = svc;
+    serviceSelect.appendChild(opt);
+  });
   new TomSelect('#primary_services', { maxItems: 5, plugins: ['remove_button'], create: false, placeholder: 'Type to search...' });
 
   // ========== PARTICLE BACKGROUND ==========
@@ -147,58 +255,107 @@
   function drawParticles() { if(!ctx) return; ctx.clearRect(0,0,w,h); for(let p of particles){ ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle=`rgba(229,180,80,${p.a})`; ctx.fill(); p.x+=p.dx; p.y+=p.dy; if(p.x<0) p.x=w; if(p.x>w) p.x=0; if(p.y<0) p.y=h; if(p.y>h) p.y=0; } requestAnimationFrame(drawParticles); }
   window.addEventListener('resize',resizeCanvas); resizeCanvas(); drawParticles();
 
-  // ========== FORM SUBMIT (PROPER ERROR LOGGING) ==========
+  // ========== FORM SUBMIT (FULL ERROR HANDLING) ==========
   const form = document.getElementById('partnerForm');
+  const statusDiv = document.getElementById('formStatus');
+
+  function showStatus(message, isError = false) {
+    statusDiv.textContent = message;
+    statusDiv.className = `mb-4 p-3 rounded-lg text-sm text-center ${isError ? 'bg-red-500/20 text-red-300 border border-red-500/30' : 'bg-green-500/20 text-green-300 border border-green-500/30'}`;
+    statusDiv.style.display = 'block';
+    setTimeout(() => { if (statusDiv) statusDiv.style.display = 'none'; }, 5000);
+  }
+
+  function validateField(id, condition, errorMsg) {
+    const field = document.getElementById(id);
+    const errorDiv = document.querySelector(`.error-text[data-for="${id}"]`);
+    if (!field || !errorDiv) return true;
+    const isValid = condition(field.value);
+    if (!isValid) {
+      errorDiv.style.display = 'block';
+      return false;
+    }
+    errorDiv.style.display = 'none';
+    return true;
+  }
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    
+    // Validate required fields
+    let isValid = true;
+    isValid &= validateField('agency_name', v => v.trim() !== '', '');
+    isValid &= validateField('full_name', v => v.trim() !== '', '');
+    isValid &= validateField('email', v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v), '');
+    isValid &= validateField('whatsapp', v => v.trim() !== '', '');
+    isValid &= validateField('location', v => v.trim() !== '', '');
+    
+    const selectedServices = Array.from(serviceSelect.selectedOptions).length;
+    const servicesError = document.querySelector('.error-text[data-for="primary_services"]');
+    if (selectedServices === 0) {
+      if (servicesError) servicesError.style.display = 'block';
+      isValid = false;
+    } else if (servicesError) servicesError.style.display = 'none';
+    
+    if (!isValid) {
+      showStatus('❌ Please fill all required fields correctly.', true);
+      return;
+    }
+    
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalText = submitBtn.innerText;
     submitBtn.disabled = true;
     submitBtn.innerText = 'Submitting...';
-
-    // Get selected services
-    const selectedOptions = Array.from(document.querySelector('#primary_services').selectedOptions);
-    const selectedServices = selectedOptions.map(opt => opt.value);
-
-    // Prepare data object
+    
     const formData = {
-      agency_name: document.getElementById('agency_name').value,
-      full_name: document.getElementById('full_name').value,
-      email: document.getElementById('email').value,
-      whatsapp: document.getElementById('whatsapp').value,
-      primary_services: selectedServices,
-      location: document.getElementById('location').value,
+      agency_name: document.getElementById('agency_name').value.trim(),
+      full_name: document.getElementById('full_name').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      whatsapp: document.getElementById('whatsapp').value.trim(),
+      primary_services: Array.from(serviceSelect.selectedOptions).map(o => o.value),
+      location: document.getElementById('location').value.trim(),
       preferred_plan: document.getElementById('preferred_plan').value,
       monthly_volume: document.getElementById('monthly_volume').value,
-      hear_about: document.getElementById('hear_about').value,
-      message: document.getElementById('message').value,
+      hear_about: document.getElementById('hear_about').value.trim() || null,
+      message: document.getElementById('message').value.trim() || null,
     };
-
+    
     try {
-      // Attempt to insert
-      const { data, error } = await supabaseClient
-        .from('partners')
-        .insert([formData]);
-
+      const { data, error } = await supabaseClient.from('partners').insert([formData]);
       if (error) {
-        // Log the detailed error to the console
-        console.error('Supabase Insert Error:', error);
-        alert(`❌ Submission failed: ${error.message}. Check console for details.`);
+        console.error('Supabase error:', error);
+        showStatus(`❌ Submission failed: ${error.message}. Please try again.`, true);
       } else {
-        alert('✅ Application received! We will contact you within 48 hours. Welcome to the collective.');
+        showStatus('✅ Application received! We will contact you within 48 hours. Welcome to the collective.', false);
         form.reset();
         if (serviceSelect.tomselect) serviceSelect.tomselect.clear();
+        // Also clear custom error displays
+        document.querySelectorAll('.error-text').forEach(el => el.style.display = 'none');
       }
     } catch (err) {
-      // This will catch any "Failed to fetch" or network-related errors
-      console.error('Network Error:', err);
-      alert('❌ Network error. Please check your internet connection and ensure CORS settings are correct.');
+      console.error('Network error:', err);
+      showStatus('❌ Network error. Please check your connection and try again.', true);
     } finally {
       submitBtn.disabled = false;
       submitBtn.innerText = originalText;
     }
   });
-
+  
+  // Real‑time inline validation on blur
+  const fields = ['agency_name', 'full_name', 'email', 'whatsapp', 'location'];
+  fields.forEach(id => {
+    const input = document.getElementById(id);
+    if (input) {
+      input.addEventListener('blur', () => {
+        if (id === 'email') {
+          validateField(id, v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v), '');
+        } else {
+          validateField(id, v => v.trim() !== '', '');
+        }
+      });
+    }
+  });
+  
   // Scroll reveal
   const reveals = document.querySelectorAll('.scroll-reveal');
   const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.15 });
