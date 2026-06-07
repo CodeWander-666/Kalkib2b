@@ -46,7 +46,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* (your existing CSS – unchanged) */
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family:'Inter',sans-serif; background:#0A0A0F; color:#F0F3FA; overflow-x:hidden; }
     h1,h2,h3,.font-serif { font-family:'Playfair Display',serif; }
@@ -63,11 +62,72 @@
     .stat-number { font-size:2.8rem; font-weight:800; line-height:1; }
     footer a:hover { color:#E9B44C; }
     .gradient-border-bottom::after { content:''; position:absolute; bottom:-8px; left:0; width:60px; height:3px; background:linear-gradient(90deg,#E9B44C,#C79A2E); border-radius:3px; }
+    
+    /* Mobile Hamburger Menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 75%;
+      max-width: 320px;
+      height: 100vh;
+      background: rgba(10,10,15,0.98);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      transition: right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      padding: 2rem 1.5rem;
+      box-shadow: -5px 0 30px rgba(0,0,0,0.5);
+      border-left: 1px solid rgba(212,175,55,0.2);
+    }
+    .mobile-menu.open { right: 0; }
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s;
+    }
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .hamburger {
+      cursor: pointer;
+      width: 28px;
+      height: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .hamburger span {
+      width: 100%;
+      height: 2px;
+      background: white;
+      transition: all 0.3s;
+      border-radius: 2px;
+    }
+    .close-menu {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #E9B44C;
+    }
+    @media (min-width: 769px) {
+      .mobile-menu, .menu-overlay, .hamburger { display: none; }
+    }
   </style>
 </head>
 <body>
 <canvas id="particle-canvas"></canvas>
 
+<!-- Desktop Navigation -->
 <nav class="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-xl border-b border-white/10 py-4 px-6 md:px-12">
   <div class="max-w-7xl mx-auto flex justify-between items-center">
     <div class="text-2xl font-bold tracking-tight"><span class="gradient-gold">KALKI</span><span class="text-white font-light">B2B</span></div>
@@ -78,9 +138,28 @@
       <a href="pricing.html" class="hover:text-amber-400 transition">Pricing</a>
       <a href="join.html" class="hover:text-amber-400 transition">Join</a>
     </div>
-    <a href="join.html" class="bg-gradient-to-r from-amber-600 to-yellow-600 px-5 py-2 rounded-full text-sm font-semibold shadow-lg hover:scale-105 transition">Become Partner →</a>
+    <a href="join.html" class="hidden md:inline-block bg-gradient-to-r from-amber-600 to-yellow-600 px-5 py-2 rounded-full text-sm font-semibold shadow-lg hover:scale-105 transition">Become Partner →</a>
+    <!-- Mobile Hamburger -->
+    <div class="hamburger md:hidden" id="hamburgerBtn">
+      <span></span><span></span><span></span>
+    </div>
   </div>
 </nav>
+
+<!-- Mobile Menu -->
+<div class="menu-overlay" id="menuOverlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <div class="close-menu" id="closeMenuBtn">&times;</div>
+  <div class="flex flex-col gap-6 mt-12">
+    <a href="index.html" class="text-white text-lg font-medium hover:text-amber-400 transition">Home</a>
+    <a href="services.html" class="text-white text-lg font-medium hover:text-amber-400 transition">Services</a>
+    <a href="how-it-works.html" class="text-white text-lg font-medium hover:text-amber-400 transition">How it Works</a>
+    <a href="pricing.html" class="text-white text-lg font-medium hover:text-amber-400 transition">Pricing</a>
+    <a href="join.html" class="text-white text-lg font-medium hover:text-amber-400 transition">Join</a>
+    <hr class="border-white/20">
+    <a href="join.html" class="bg-gradient-to-r from-amber-600 to-yellow-600 text-center px-4 py-2 rounded-full text-sm font-semibold mt-4">Become Partner →</a>
+  </div>
+</div>
 
 <main class="relative pt-28 pb-20">
   <!-- Hero -->
@@ -111,7 +190,7 @@
     </div>
   </section>
 
-  <!-- Lead Distribution Policy (Fair & Strategic) -->
+  <!-- Lead Distribution Policy -->
   <section id="policy" class="max-w-7xl mx-auto px-6 mb-24">
     <div class="text-center mb-12 scroll-reveal">
       <h2 class="text-4xl md:text-5xl font-serif">Fair & Transparent <span class="gradient-gold">Lead Distribution</span></h2>
@@ -119,108 +198,47 @@
     </div>
     <div class="glass-card p-8 md:p-10 scroll-reveal">
       <div class="grid md:grid-cols-2 gap-10">
-        <div>
-          <i class="fas fa-charging-station text-4xl text-amber-500 mb-3"></i>
-          <h3 class="text-2xl font-serif">1. Lead Collection</h3>
-          <p class="text-gray-300 text-sm mt-2">We aggregate leads from multiple channels – KalkiB2B website, WhatsApp chatbots, social media campaigns, partner referrals, and our AI‑powered outreach engine. Every lead is pre‑qualified by our data science team (budget, timeline, location, service needed).</p>
-          <div class="bg-white/5 rounded-xl p-3 mt-4 text-xs text-gray-400">~5,000+ monthly lead volume (projected by Q4 2026)</div>
-        </div>
-        <div>
-          <i class="fas fa-filter text-4xl text-amber-500 mb-3"></i>
-          <h3 class="text-2xl font-serif">2. Intelligent Scoring</h3>
-          <p class="text-gray-300 text-sm mt-2">Each lead gets an “intent score” (0‑100) based on budget, response rate, project clarity, and industry vertical. Only leads with score ≥70 are routed to partners – no spam, no low‑intent inquiries.</p>
-        </div>
-        <div>
-          <i class="fas fa-chart-pie text-4xl text-amber-500 mb-3"></i>
-          <h3 class="text-2xl font-serif">3. Distribution Algorithm</h3>
-          <p class="text-gray-300 text-sm mt-2">Leads are distributed based on a weighted formula:<br> <strong>40% relevance</strong> (partner’s primary service categories + location match)<br> <strong>30% capacity</strong> (current open leads / project load)<br> <strong>20% performance</strong> (historical conversion rate, response time)<br> <strong>10% random</strong> (to ensure fairness and opportunity for new partners).</p>
-        </div>
-        <div>
-          <i class="fas fa-hand-holding-heart text-4xl text-amber-500 mb-3"></i>
-          <h3 class="text-2xl font-serif">4. Fairness Guarantees</h3>
-          <ul class="text-gray-300 text-sm space-y-1 mt-2">
-            <li>✓ No single partner can receive more than 15% of total leads in a 30‑day window.</li>
-            <li>✓ New partners get a “boosting factor” for first 60 days to ensure they receive opportunities.</li>
-            <li>✓ Partners can set lead capacity limits (e.g., max 10 leads/week).</li>
-            <li>✓ Full transparency: each lead comes with a score & routing reason visible in dashboard.</li>
-          </ul>
-        </div>
+        <div><i class="fas fa-charging-station text-4xl text-amber-500 mb-3"></i><h3 class="text-2xl font-serif">1. Lead Collection</h3><p class="text-gray-300 text-sm mt-2">We aggregate leads from multiple channels – KalkiB2B website, WhatsApp chatbots, social media campaigns, partner referrals, and our AI‑powered outreach engine. Every lead is pre‑qualified.</p><div class="bg-white/5 rounded-xl p-3 mt-4 text-xs text-gray-400">~5,000+ monthly lead volume (projected by Q4 2026)</div></div>
+        <div><i class="fas fa-filter text-4xl text-amber-500 mb-3"></i><h3 class="text-2xl font-serif">2. Intelligent Scoring</h3><p class="text-gray-300 text-sm mt-2">Each lead gets an “intent score” (0‑100) based on budget, response rate, project clarity, and industry vertical. Only leads with score ≥70 are routed to partners.</p></div>
+        <div><i class="fas fa-chart-pie text-4xl text-amber-500 mb-3"></i><h3 class="text-2xl font-serif">3. Distribution Algorithm</h3><p class="text-gray-300 text-sm mt-2">Leads are distributed based on a weighted formula: 40% relevance, 30% capacity, 20% performance, 10% random (fairness).</p></div>
+        <div><i class="fas fa-hand-holding-heart text-4xl text-amber-500 mb-3"></i><h3 class="text-2xl font-serif">4. Fairness Guarantees</h3><ul class="text-gray-300 text-sm space-y-1 mt-2"><li>✓ No single partner receives >15% of leads in 30 days</li><li>✓ New partners get 60‑day boosting factor</li><li>✓ Partners can set lead capacity limits</li></ul></div>
       </div>
-      <div class="mt-8 bg-black/40 rounded-2xl p-5 border border-amber-500/20 text-center">
-        <p class="text-amber-400 font-semibold">Every partner receives leads – not just top performers. We actively rebalance the pool.</p>
-      </div>
+      <div class="mt-8 bg-black/40 rounded-2xl p-5 border border-amber-500/20 text-center"><p class="text-amber-400 font-semibold">Every partner receives leads – not just top performers. We actively rebalance the pool.</p></div>
     </div>
   </section>
 
-  <!-- The Barter Model (Service Swap & Sub‑contracting) -->
+  <!-- Barter Model -->
   <section class="max-w-7xl mx-auto px-6 mb-24">
     <div class="glass-card p-8 md:p-12 scroll-reveal">
       <div class="grid md:grid-cols-2 gap-12 items-center">
-        <div>
-          <i class="fas fa-exchange-alt text-5xl text-amber-500 mb-4"></i>
-          <h2 class="text-3xl md:text-4xl font-serif">How Barter <span class="gradient-gold">Works in the Pool</span></h2>
-          <p class="text-gray-300 text-base mt-3 leading-relaxed">Partners can exchange services directly or offer their expertise to other partners' clients. KalkiB2B charges only <strong class="text-amber-400">2% of the project value</strong> (capped at ₹25k) from the receiving agency.</p>
-          <div class="bg-white/5 rounded-xl p-4 mt-4">
-            <p class="text-sm font-mono text-gray-300">Example: Agency A provides ₹1,00,000 SEO to Agency B. Agency B provides ₹1,00,000 web development to Agency A. Net cash = ₹0. KalkiB2B commission = ₹2,000 (only one side).</p>
-          </div>
-          <p class="text-gray-300 text-sm mt-4">You can also offer white‑label services to other partners – they sell to their clients, you deliver, and both earn. KalkiB2B handles the matchmaking and invoicing.</p>
-        </div>
-        <div class="bg-black/40 rounded-2xl p-6 border border-amber-500/20">
-          <p class="text-amber-400 font-bold text-center text-lg">Why barter is revolutionary</p>
-          <ul class="mt-3 space-y-2 text-sm text-gray-300">
-            <li>✓ <strong>Preserve cash</strong> – use your service capacity as currency</li>
-            <li>✓ <strong>Win larger projects</strong> by bundling partner services</li>
-            <li>✓ <strong>Build a trusted network</strong> across India</li>
-            <li>✓ <strong>Only 2% success fee</strong> – lowest in industry</li>
-            <li>✓ <strong>KalkiB2B acts as guarantor</strong> – we mediate quality & timelines</li>
-          </ul>
-        </div>
+        <div><i class="fas fa-exchange-alt text-5xl text-amber-500 mb-4"></i><h2 class="text-3xl md:text-4xl font-serif">How Barter <span class="gradient-gold">Works in the Pool</span></h2><p class="text-gray-300 text-base mt-3">Partners exchange services directly or offer expertise to other partners' clients. KalkiB2B charges only <strong>2% of project value</strong> (capped at ₹25k).</p><div class="bg-white/5 rounded-xl p-4 mt-4"><p class="text-sm font-mono">Example: ₹1L SEO ↔ ₹1L Web Dev. Net cash = ₹0. KalkiB2B fee = ₹2,000 (one side).</p></div><p class="text-gray-300 text-sm mt-4">White‑label services, matchmaking, and invoicing handled by KalkiB2B.</p></div>
+        <div class="bg-black/40 rounded-2xl p-6 border border-amber-500/20"><p class="text-amber-400 font-bold text-center text-lg">Why barter is revolutionary</p><ul class="mt-3 space-y-2 text-sm text-gray-300"><li>✓ <strong>Preserve cash</strong> – use service capacity as currency</li><li>✓ <strong>Win larger projects</strong> by bundling services</li><li>✓ <strong>Build a trusted network</strong> across India</li><li>✓ <strong>Only 2% success fee</strong> – lowest in industry</li></ul></div>
       </div>
     </div>
   </section>
 
-  <!-- How Companies Collaborate -->
+  <!-- Service Categories -->
   <section class="max-w-7xl mx-auto px-6 mb-24">
-    <div class="glass-card p-8 md:p-12 scroll-reveal text-center">
-      <i class="fas fa-building text-5xl text-amber-500 mb-3"></i>
-      <h2 class="text-3xl md:text-4xl font-serif">For Digital Marketing & Tech Companies – <span class="gradient-gold">Collaborate, Don't Compete</span></h2>
-      <p class="text-gray-400 max-w-2xl mx-auto mt-2">You keep your client. We connect you with vetted partners to deliver services you don't offer in‑house – and earn a referral.</p>
-      <div class="grid md:grid-cols-3 gap-6 mt-10">
-        <div><i class="fas fa-hand-holding-heart text-4xl text-amber-500 mb-2"></i><h3 class="text-xl font-bold">White‑Label Delivery</h3><p class="text-sm text-gray-300">Outsource SEO, PPC, web dev to verified partners. Your client never knows.</p></div>
-        <div><i class="fas fa-charging-station text-4xl text-amber-500 mb-2"></i><h3 class="text-xl font-bold">2% Commission</h3><p class="text-sm text-gray-300">You pay only 2% of subcontract value – no hidden fees.</p></div>
-        <div><i class="fas fa-chart-line text-4xl text-amber-500 mb-2"></i><h3 class="text-xl font-bold">Scale Offerings</h3><p class="text-sm text-gray-300">Bid on larger projects by bundling services from the pool.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Service Categories (Detailed) -->
-  <section class="max-w-7xl mx-auto px-6 mb-24">
-    <div class="text-center mb-12 scroll-reveal">
-      <h2 class="text-4xl md:text-5xl font-serif">Full‑Spectrum <span class="gradient-gold">Tech & AI Services</span></h2>
-      <p class="text-gray-400 max-w-2xl mx-auto mt-2">35+ categories, 200+ sub‑services – all under one collective</p>
-    </div>
+    <div class="text-center mb-12 scroll-reveal"><h2 class="text-4xl md:text-5xl font-serif">Full‑Spectrum <span class="gradient-gold">Tech & AI Services</span></h2><p class="text-gray-400 max-w-2xl mx-auto mt-2">35+ categories, 200+ sub‑services – all under one collective</p></div>
     <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-5">
-      <div class="glass-card p-4 scroll-reveal"><i class="fas fa-robot text-2xl text-amber-500 mb-2"></i><h3 class="font-bold">AI & Machine Learning</h3><p class="text-xs text-gray-400">LLM, computer vision, predictive models</p></div>
-      <div class="glass-card p-4 scroll-reveal"><i class="fas fa-chart-line text-2xl text-amber-500 mb-2"></i><h3 class="font-bold">Digital Marketing</h3><p class="text-xs text-gray-400">SEO, PPC, social media, ORM, influencer</p></div>
+      <div class="glass-card p-4 scroll-reveal"><i class="fas fa-robot text-2xl text-amber-500 mb-2"></i><h3 class="font-bold">AI & ML</h3><p class="text-xs text-gray-400">LLM, computer vision, predictive models</p></div>
+      <div class="glass-card p-4 scroll-reveal"><i class="fas fa-chart-line text-2xl text-amber-500 mb-2"></i><h3 class="font-bold">Digital Marketing</h3><p class="text-xs text-gray-400">SEO, PPC, social, ORM, influencer</p></div>
       <div class="glass-card p-4 scroll-reveal"><i class="fas fa-code text-2xl text-amber-500 mb-2"></i><h3 class="font-bold">Web & App Dev</h3><p class="text-xs text-gray-400">Next.js, React Native, e‑commerce</p></div>
-      <div class="glass-card p-4 scroll-reveal"><i class="fas fa-database text-2xl text-amber-500 mb-2"></i><h3 class="font-bold">Data Engineering</h3><p class="text-xs text-gray-400">Data lakes, BI dashboards, real‑time</p></div>
-      <div class="glass-card p-4 scroll-reveal"><i class="fas fa-cloud-upload-alt text-2xl text-amber-500 mb-2"></i><h3 class="font-bold">Cloud & DevOps</h3><p class="text-xs text-gray-400">AWS, GCP, Azure, Kubernetes, CI/CD</p></div>
-      <div class="glass-card p-4 scroll-reveal"><i class="fas fa-shield-alt text-2xl text-amber-500 mb-2"></i><h3 class="font-bold">Cybersecurity</h3><p class="text-xs text-gray-400">VAPT, SOC, compliance (ISO, GDPR)</p></div>
+      <div class="glass-card p-4 scroll-reveal"><i class="fas fa-database text-2xl text-amber-500 mb-2"></i><h3 class="font-bold">Data Engineering</h3><p class="text-xs text-gray-400">Data lakes, BI dashboards</p></div>
+      <div class="glass-card p-4 scroll-reveal"><i class="fas fa-cloud-upload-alt text-2xl text-amber-500 mb-2"></i><h3 class="font-bold">Cloud & DevOps</h3><p class="text-xs text-gray-400">AWS, GCP, Azure, Kubernetes</p></div>
+      <div class="glass-card p-4 scroll-reveal"><i class="fas fa-shield-alt text-2xl text-amber-500 mb-2"></i><h3 class="font-bold">Cybersecurity</h3><p class="text-xs text-gray-400">VAPT, SOC, compliance</p></div>
       <div class="glass-card p-4 scroll-reveal"><i class="fas fa-vr-cardboard text-2xl text-amber-500 mb-2"></i><h3 class="font-bold">AR/VR & Metaverse</h3><p class="text-xs text-gray-400">3D modelling, virtual tours</p></div>
-      <div class="glass-card p-4 scroll-reveal"><i class="fas fa-bullhorn text-2xl text-amber-500 mb-2"></i><h3 class="font-bold">Growth & Consultancy</h3><p class="text-xs text-gray-400">Fractional CMO, fundraising support</p></div>
+      <div class="glass-card p-4 scroll-reveal"><i class="fas fa-bullhorn text-2xl text-amber-500 mb-2"></i><h3 class="font-bold">Growth & Consultancy</h3><p class="text-xs text-gray-400">Fractional CMO, fundraising</p></div>
     </div>
     <div class="text-center mt-8"><a href="services.html" class="text-amber-400 hover:underline font-medium">View full list of 200+ sub‑services →</a></div>
   </section>
 
   <!-- Pricing Overview -->
   <section class="max-w-7xl mx-auto px-6 mb-24">
-    <div class="text-center mb-10 scroll-reveal">
-      <h2 class="text-4xl md:text-5xl font-serif">Simple, <span class="gradient-gold">Zero‑Risk Pricing</span></h2>
-      <p class="text-gray-400">Choose a plan that matches your growth stage</p>
-    </div>
+    <div class="text-center mb-10 scroll-reveal"><h2 class="text-4xl md:text-5xl font-serif">Simple, <span class="gradient-gold">Zero‑Risk Pricing</span></h2><p class="text-gray-400">Choose a plan that matches your growth stage</p></div>
     <div class="grid md:grid-cols-3 gap-8">
-      <div class="glass-card p-6 text-center scroll-reveal"><i class="fas fa-seedling text-3xl text-amber-500"></i><h3 class="text-xl font-bold mt-2">Pilot</h3><div class="text-2xl font-bold my-2">₹5k<span class="text-sm text-gray-400">/month</span></div><p class="text-sm text-gray-300">10 leads/month, basic barter, standard distribution</p><a href="pricing.html" class="inline-block mt-4 text-amber-400 text-sm">Learn more →</a></div>
-      <div class="glass-card p-6 text-center scroll-reveal border-2 border-amber-500/40"><i class="fas fa-chart-line text-3xl text-amber-500"></i><h3 class="text-xl font-bold mt-2">Scale Partner</h3><div class="text-2xl font-bold my-2">₹12k<span class="text-sm text-gray-400">/month</span></div><p class="text-sm text-gray-300">30 leads/month, priority routing, full barter, analytics</p><a href="pricing.html" class="inline-block mt-4 text-amber-400 text-sm">Most popular →</a></div>
+      <div class="glass-card p-6 text-center scroll-reveal"><i class="fas fa-seedling text-3xl text-amber-500"></i><h3 class="text-xl font-bold mt-2">Pilot</h3><div class="text-2xl font-bold my-2">₹5k<span class="text-sm text-gray-400">/month</span></div><p class="text-sm text-gray-300">10 leads/month, basic barter</p><a href="pricing.html" class="inline-block mt-4 text-amber-400 text-sm">Learn more →</a></div>
+      <div class="glass-card p-6 text-center scroll-reveal border-2 border-amber-500/40"><i class="fas fa-chart-line text-3xl text-amber-500"></i><h3 class="text-xl font-bold mt-2">Scale Partner</h3><div class="text-2xl font-bold my-2">₹12k<span class="text-sm text-gray-400">/month</span></div><p class="text-sm text-gray-300">30 leads/month, priority routing, full barter</p><a href="pricing.html" class="inline-block mt-4 text-amber-400 text-sm">Most popular →</a></div>
       <div class="glass-card p-6 text-center scroll-reveal"><i class="fas fa-building text-3xl text-amber-500"></i><h3 class="text-xl font-bold mt-2">Enterprise</h3><div class="text-2xl font-bold my-2">Custom</div><p class="text-sm text-gray-300">Unlimited leads, white‑label, dedicated AM</p><a href="pricing.html" class="inline-block mt-4 text-amber-400 text-sm">Contact us →</a></div>
     </div>
   </section>
@@ -233,7 +251,7 @@
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- Final CTA -->
   <div class="max-w-5xl mx-auto px-6 text-center">
     <div class="bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent rounded-2xl p-8 border border-amber-500/20">
       <h3 class="text-2xl md:text-3xl font-serif">Ready to join India's horizontal tech revolution?</h3>
@@ -261,6 +279,7 @@
 </footer>
 
 <script>
+  // Particle background
   const canvas = document.getElementById('particle-canvas');
   let ctx = canvas.getContext('2d');
   let particles = [], w, h;
@@ -268,9 +287,25 @@
   function initParticles() { particles=[]; let count=Math.min(80,Math.floor(w/20)); for(let i=0;i<count;i++) particles.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2+1,a:Math.random()*0.3+0.1,dx:(Math.random()-0.5)*0.2,dy:(Math.random()-0.5)*0.2}); }
   function drawParticles() { if(!ctx) return; ctx.clearRect(0,0,w,h); for(let p of particles){ ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle=`rgba(229,180,80,${p.a})`; ctx.fill(); p.x+=p.dx; p.y+=p.dy; if(p.x<0) p.x=w; if(p.x>w) p.x=0; if(p.y<0) p.y=h; if(p.y>h) p.y=0; } requestAnimationFrame(drawParticles); }
   window.addEventListener('resize',resizeCanvas); resizeCanvas(); drawParticles();
+
+  // Scroll reveal
   const reveals = document.querySelectorAll('.scroll-reveal');
   const observer = new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); }); },{threshold:0.15});
   reveals.forEach(el=>observer.observe(el));
+
+  // Mobile Menu Toggle
+  const hamburger = document.getElementById('hamburgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('menuOverlay');
+  const closeBtn = document.getElementById('closeMenuBtn');
+
+  function openMenu() { mobileMenu.classList.add('open'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+  function closeMenu() { mobileMenu.classList.remove('open'); overlay.classList.remove('active'); document.body.style.overflow = ''; }
+  hamburger.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+  // Close on link click
+  document.querySelectorAll('.mobile-menu a').forEach(link => link.addEventListener('click', closeMenu));
 </script>
 </body>
 </html>
