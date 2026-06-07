@@ -1,0 +1,103 @@
+# -------------------------------------------------------------------
+# KalkiB2B – Robots.txt for maximum crawl efficiency & SEO
+# Version: 1.0 (2026)
+# -------------------------------------------------------------------
+
+# Allow all major search engines (Google, Bing, Yandex, Baidu, etc.)
+User-agent: *
+Allow: /
+
+# -------------------------------------------------------------------
+# Disallow non‑public and system directories (security + crawl budget)
+# -------------------------------------------------------------------
+Disallow: /assets/               # If internal asset folder (optional)
+Disallow: /temp/                 # Temporary files
+Disallow: /backup/               # Backup folders
+Disallow: /cgi-bin/              # Legacy CGI scripts
+Disallow: /private/              # Any private content
+Disallow: /admin/                # Admin panel (if exists)
+Disallow: /wp-admin/             # WordPress leftovers (none here, but safe)
+Disallow: /wp-content/           # WordPress leftovers
+Disallow: /includes/             # Server includes
+Disallow: /logs/                 # Server logs
+Disallow: /error_log             # Error logs
+Disallow: /tmp/                  # Temporary system folder
+Disallow: /test/                 # Testing directory
+Disallow: /draft/                # Draft content
+Disallow: /old/                  # Deprecated pages
+
+# -------------------------------------------------------------------
+# Disallow dynamically generated parameters (avoid duplicate content)
+# -------------------------------------------------------------------
+Disallow: /*?ref=
+Disallow: /*?utm_
+Disallow: /*?fbclid=
+Disallow: /*?gclid=
+Disallow: /*?msclkid=
+Disallow: /*?source=
+Disallow: /*?session=
+Disallow: /*?token=
+Disallow: /*?code=
+Disallow: /*?state=
+
+# -------------------------------------------------------------------
+# Disallow common script and data directories
+# -------------------------------------------------------------------
+Disallow: /scripts/
+Disallow: /css/
+Disallow: /js/                   # Crawlers don't need to index JS
+Disallow: /fonts/                # Font files
+Disallow: /images/optimized/     # If you have an unindexed image cache
+
+# -------------------------------------------------------------------
+# Crawl delay (gentle on server – recommended for large sites)
+# -------------------------------------------------------------------
+Crawl-delay: 1
+
+# -------------------------------------------------------------------
+# Sitemap location – **Critical for Google**
+# -------------------------------------------------------------------
+Sitemap: https://kalkicore.vercel.app/b2b/sitemap.xml
+
+# -------------------------------------------------------------------
+# Host directive (optional, but helpful for mirror sites)
+# -------------------------------------------------------------------
+Host: https://kalkicore.vercel.app
+
+# -------------------------------------------------------------------
+# Additional directives for Google (2025+ best practices)
+# -------------------------------------------------------------------
+# Allow Google to crawl all critical content, including CSS/JS for rendering
+User-agent: Googlebot
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.webp
+Allow: /*.svg
+
+# -------------------------------------------------------------------
+# For Bing (better rendering)
+# -------------------------------------------------------------------
+User-agent: Bingbot
+Allow: /*.css
+Allow: /*.js
+
+# -------------------------------------------------------------------
+# For Yandex (Russian search, still relevant for global)
+# -------------------------------------------------------------------
+User-agent: Yandex
+Allow: /*.css
+Allow: /*.js
+
+# -------------------------------------------------------------------
+# General clean‑up – prevent crawling of pagination with many parameters
+# -------------------------------------------------------------------
+Disallow: /*?page=
+Disallow: /*&page=
+Disallow: /*?p=
+Disallow: /*&p=
+
+# -------------------------------------------------------------------
+# End of robots.txt – ensure you update sitemap location if changed
+# -------------------------------------------------------------------
